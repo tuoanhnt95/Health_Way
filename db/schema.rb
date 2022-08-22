@@ -10,9 +10,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_22_074514) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_22_081844) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "clinic_set_ups", force: :cascade do |t|
+    t.bigint "clinic_id", null: false
+    t.bigint "set_up_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["clinic_id"], name: "index_clinic_set_ups_on_clinic_id"
+    t.index ["set_up_id"], name: "index_clinic_set_ups_on_set_up_id"
+  end
+
+  create_table "clinics", force: :cascade do |t|
+    t.string "name"
+    t.text "address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "companies", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "health_checks", force: :cascade do |t|
+    t.date "date"
+    t.bigint "set_up_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "clinic_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["clinic_id"], name: "index_health_checks_on_clinic_id"
+    t.index ["set_up_id"], name: "index_health_checks_on_set_up_id"
+    t.index ["user_id"], name: "index_health_checks_on_user_id"
+  end
+
+  create_table "set_ups", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.bigint "company_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_set_ups_on_company_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,8 +65,21 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_22_074514) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.boolean "admin"
+    t.bigint "company_id", null: false
+    t.integer "fax_extension"
+    t.index ["company_id"], name: "index_users_on_company_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "clinic_set_ups", "clinics"
+  add_foreign_key "clinic_set_ups", "set_ups"
+  add_foreign_key "health_checks", "clinics"
+  add_foreign_key "health_checks", "set_ups"
+  add_foreign_key "health_checks", "users"
+  add_foreign_key "set_ups", "companies"
+  add_foreign_key "users", "companies"
 end
