@@ -5,6 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :company
-  has_many :health_checks, dependent_destroy: true
+  has_many :health_checks, dependent: :destroy
   validates :admin, presence: true
 end
