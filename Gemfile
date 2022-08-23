@@ -73,6 +73,7 @@ group :test do
   gem "webdrivers"
 end
 
+gem "pundit"
 gem "autoprefixer-rails"
 gem "cloudinary"
 gem "devise"

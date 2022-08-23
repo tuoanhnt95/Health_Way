@@ -7,6 +7,4 @@ class User < ApplicationRecord
   belongs_to :company
   has_many :health_checks, dependent: :destroy
   has_one_attached :photo
-
-  validates :admin, presence: true
 end
