@@ -22,7 +22,7 @@ class HealthChecksController < ApplicationController
     if @health_check.save
       redirect_to health_checks_path
     else
-      render :new, status: :other
+      render :new, status: :unprocessable_entity
     end
   end
 
