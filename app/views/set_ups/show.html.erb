@@ -1,2 +1,23 @@
 <h1>SetUps#show</h1>
 <p>Find me in app/views/set_ups/show.html.erb</p>
+
+<h1>Time Frame</h1>
+<%= @set_up.start_date %>
+<%= @set_up.end_date %>
+
+<h1>Clinic</h1>
+<% @set_up.clinics.each do |clinic| %>
+  <%= clinic.name %>
+  <br>
+<% end %>
+
+<h1>Completation Rate</h1>
+  <%= ((@set_up.health_checks.count) / (@set_up.company.users.count).to_f * 100).ceil %>%
+
+<h1>Table</h1>
+<% @set_up.health_checks.each do |health_check| %>
+  <%= "#{health_check.user.last_name} #{health_check.user.first_name}" %>
+  <%= health_check.date %>
+  <%= health_check.result.attached? %>
+  <br>
+<% end %>

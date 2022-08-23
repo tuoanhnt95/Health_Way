@@ -40,7 +40,7 @@ first_names_roma = ['hatakeyama', 'mengrui', 'aoi', 'ituki', 'minato', 'asahi', 
 last_names = ['弥生', '宋', '高橋', '田中', '伊藤', '渡辺', '山本', '中村', '小林', '加藤',
               '清水', '佐藤', '鈴木', '高橋', '矢部', '田中', '山本', '中村', '伊藤', '阮']
 last_names_roma = ['yayoi', 'song', 'takahashi', 'tanaka', 'ito', 'watanabe', 'yamamoto', 'nakamura', 'kobayashi', 'kato',
-                  'shimizu', 'sato', 'suzuki', 'takahashi', 'yabe', 'tanaka', 'yamamoto', 'nakamura', 'ito' 'nguyen']
+                  'shimizu', 'sato', 'suzuki', 'takahashi', 'yabe', 'tanaka', 'yamamoto', 'nakamura', 'ito', 'nguyen']
 first_names.each_with_index do |first_name, index|
   User.create!(
   first_name: first_name,
@@ -59,22 +59,34 @@ oanh.save
 puts "#{User.count} users created..."
 
 
-# =====================1 set up=====================
+# =====================3 set up=====================
 puts "Creating new set_up..."
-set_up = SetUp.create!(
+set_up_2020 = SetUp.create!(
+  start_date: Time.local(2020, 9, 1),
+  end_date: Time.local(2020, 12, 1),
+  company: company
+)
+set_up_2021 = SetUp.create!(
+  start_date: Time.local(2021, 9, 1),
+  end_date: Time.local(2021, 12, 1),
+  company: company
+)
+set_up_2022 = SetUp.create!(
   start_date: Time.local(2022, 9, 1),
   end_date: Time.local(2022, 12, 1),
   company: company
 )
 puts "#{SetUp.count} set_up created..."
 
-#=====================15 clinic set up=====================
+#=====================15 clinic_set_up=====================
 puts 'Creating health_checks...'
-Clinic.all.each do |clinic|
-  ClinicSetUp.create!(
-    clinic: clinic,
-    set_up: set_up
-  )
+SetUp.all.each do |set_up|
+  Clinic.all.each do |clinic|
+    ClinicSetUp.create!(
+      clinic: clinic,
+      set_up: set_up
+    )
+  end
 end
 
 puts "#{SetUp.count} set_up created..."
@@ -82,13 +94,13 @@ puts "#{SetUp.count} set_up created..."
 require 'open-uri'
 
 puts 'Creating health_checks...'
-Clinic.all.each_with_index do |clinic, index|
-  (2020..2022).to_a.each do |year|
+User.all.first(15).each_with_index do |user, index|
+  SetUp.all.each do |set_up|
     HealthCheck.create!(
-      user: User.all[index],
+      user: user,
       set_up: set_up,
-      date: Time.local(year, 9, 1) + rand(0..90).day,
-      clinic: clinic
+      date: set_up.start_date + rand(0..90).day,
+      clinic: Clinic.all[index]
     )
     puts "#{HealthCheck.count} health_checks created"
   end
