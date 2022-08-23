@@ -6,5 +6,5 @@ class User < ApplicationRecord
 
   belongs_to :company
   has_many :health_checks, dependent: :destroy
-  validates :admin, presence: true
+  # validates :admin, presence: true
 end
