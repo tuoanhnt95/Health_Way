@@ -1,6 +1,6 @@
 class HealthChecksController < ApplicationController
   def index
-    @health_check = HealthCheck.all
+    @health_checks = policy_scope(HealthCheck)
   end
 
   def show
@@ -10,5 +10,11 @@ class HealthChecksController < ApplicationController
   end
 
   def edit
+  end
+
+  private
+
+  def method_name
+
   end
 end
