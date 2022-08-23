@@ -1,2 +1,24 @@
-<h1>HealthChecks#index</h1>
-<p>Find me in app/views/health_checks/index.html.erb</p>
+My email: <%= current_user.email %>
+<br>
+My fax: <%= current_user.fax_extension %>
+<br>
+All My Health Checks:
+<% @health_checks.each do |health_check| %>
+  <%= health_check.date %>
+  <br>
+  <%= health_check.clinic.name %>
+  <br>
+  Status: <%= health_check.result.attached? ? "Completed" : "Pending" %>
+  <br>
+  PDF Download
+  <br>
+  <br>
+<% end %>
+<br>
+<br>
+
+<br>
+<br>
+
+<br>
+<br>

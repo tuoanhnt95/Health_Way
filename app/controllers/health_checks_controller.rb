@@ -1,8 +1,8 @@
 class HealthChecksController < ApplicationController
-  before_action :set_set_up, only: %i[show create edit update]
+  before_action :set_set_up, only: %i[show new create edit update]
 
   def index
-    @health_check = HealthCheck.all
+    @health_checks = policy_scope(HealthCheck)
   end
 
   def show
@@ -36,7 +36,7 @@ class HealthChecksController < ApplicationController
   private
 
   def health_check_params
-    params.require(:health_check).permit(:date, :clinic, :set_up_id)
+    params.require(:health_check).permit(:date, :clinic_id, :set_up_id)
   end
 
   def set_set_up

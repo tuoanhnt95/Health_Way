@@ -3,6 +3,6 @@ NEW HEALTH CHECK FORM
 <br>
 <%= simple_form_for [@set_up, @health_check] do |f| %>
   <%= f.input :date %>
-  <%= f.input :clinic, collection: @clinics %>
+  <%= f.association :clinic %>
   <%= f.submit "Confirm", class: "btn btn-primary" %>
 <% end %>
