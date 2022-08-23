@@ -4,6 +4,8 @@ class SetUpPolicy < ApplicationPolicy
     def resolve
       if user.admin
         scope.all
+      # else
+        # redirect_to health_checks_path, status: :unprocessable_entity
       end
     end
   end

@@ -6,6 +6,8 @@ All My Health Checks:
 <% @health_checks.each do |health_check| %>
   <%= health_check.date %>
   <br>
+  <%= health_check.clinic.name %>
+  <br>
   Status: <%= health_check.result.attached? ? "Completed" : "Pending" %>
   <br>
   PDF Download

@@ -62,18 +62,18 @@ puts "#{User.count} users created..."
 # =====================3 set up=====================
 puts "Creating new set_up..."
 set_up_2020 = SetUp.create!(
-  start_date: Time.local(2020, 9, 1),
-  end_date: Time.local(2020, 12, 1),
+  start_date: Time.local(2020, 7, 1),
+  end_date: Time.local(2020, 10, 1),
   company: company
 )
 set_up_2021 = SetUp.create!(
-  start_date: Time.local(2021, 9, 1),
-  end_date: Time.local(2021, 12, 1),
+  start_date: Time.local(2021, 7, 1),
+  end_date: Time.local(2021, 10, 1),
   company: company
 )
 set_up_2022 = SetUp.create!(
-  start_date: Time.local(2022, 9, 1),
-  end_date: Time.local(2022, 12, 1),
+  start_date: Time.local(2022, 7, 1),
+  end_date: Time.local(2022, 10, 1),
   company: company
 )
 puts "#{SetUp.count} set_up created..."
@@ -94,22 +94,44 @@ puts "#{SetUp.count} set_up created..."
 require 'open-uri'
 
 puts 'Creating health_checks...'
+
 User.all.first(15).each_with_index do |user, index|
-  SetUp.all.each do |set_up|
-    HealthCheck.create!(
-      user: user,
-      set_up: set_up,
-      date: set_up.start_date + rand(0..90).day,
-      clinic: Clinic.all[index]
-    )
-    puts "#{HealthCheck.count} health_checks created"
-  end
+  HealthCheck.create!(
+    user: user,
+    set_up: set_up_2020,
+    date: set_up_2020.start_date + rand(0..90).day,
+    clinic: Clinic.all.sample
+  )
+  puts "#{HealthCheck.count} health_checks created for set_up_2020"
 end
-User.first(5).each do |user|
-  # file = URI.open('https://imsgroup.jp/yobou/wp-content/themes/ims_yobou/images/2-11-2.png')
-  # health_check.result.attach(io: file, filename: 'result.png', content_type: 'file/png')
-  user.health_checks.each do |health_check|
+User.all.first(19).each_with_index do |user, index|
+  HealthCheck.create!(
+    user: user,
+    set_up: set_up_2021,
+    date: set_up_2021.start_date + rand(0..90).day,
+    clinic: Clinic.all.sample
+  )
+  puts "#{HealthCheck.count} health_checks created for set_up_2021"
+end
+User.all.first(4).each_with_index do |user, index|
+  HealthCheck.create!(
+    user: user,
+    set_up: set_up_2022,
+    date: set_up_2022.start_date + rand(0..90).day,
+    clinic: Clinic.all.sample
+  )
+  puts "#{HealthCheck.count} health_checks created for set_up_2022"
+end
+
+puts "Adding results to health check..."
+set_up_2020.health_checks.each do |health_check|
     file = URI.open('https://www.mhlw.go.jp/bunya/roudoukijun/anzeneisei36/dl/18_01.pdf')
     health_check.result.attach(io: file, filename: 'result.pdf', content_type: 'file/pdf')
-  end
 end
+set_up_2021.health_checks.each do |health_check|
+  file = URI.open('https://www.mhlw.go.jp/bunya/roudoukijun/anzeneisei36/dl/18_01.pdf')
+  health_check.result.attach(io: file, filename: 'result.pdf', content_type: 'file/pdf')
+end
+
+file = URI.open('https://www.mhlw.go.jp/bunya/roudoukijun/anzeneisei36/dl/18_01.pdf')
+set_up_2022.health_checks.first.result.attach(io: file, filename: 'result.pdf', content_type: 'file/pdf')
