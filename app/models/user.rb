@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :company
+  belongs_to :set_up
   has_many :health_checks, dependent: :destroy
   has_one_attached :photo
 end

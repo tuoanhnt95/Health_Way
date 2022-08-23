@@ -1,2 +1,8 @@
-<h1>HealthChecks#new</h1>
-<p>Find me in app/views/health_checks/new.html.erb</p>
+NEW HEALTH CHECK FORM
+<br>
+<br>
+<%= simple_form_for [@set_up, @health_check] do |f| %>
+  <%= f.input :date %>
+  <%= f.association :clinic %>
+  <%= f.submit "Confirm", class: "btn btn-primary" %>
+<% end %>
