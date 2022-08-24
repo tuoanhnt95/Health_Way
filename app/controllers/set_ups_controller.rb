@@ -18,7 +18,6 @@ class SetUpsController < ApplicationController
   def create
     @set_up = SetUp.new(set_up_params)
     authorize @set_up
-    raise
     @set_up.company = current_user.company
     if @set_up.save
       redirect_to set_up_path(@set_up)
