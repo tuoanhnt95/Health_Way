@@ -33,19 +33,19 @@ puts "#{Company.count} company created..."
 
 # ===================== 20 users=====================
 puts 'Creating new users...'
-first_names = ['畠山', '梦睿', '蒼', '樹', '湊', '朝陽', '碧', '大翔', '律', '暖',
+first_names = ['弥生', '梦睿', '蒼', '樹', '湊', '朝陽', '碧', '大翔', '律', '暖',
               '陽葵', '紬', '凛', '芽依', '葵', '陽菜', '澪', '莉子', '結菜', '鶯']
-first_names_roma = ['hatakeyama', 'mengrui', 'aoi', 'ituki', 'minato', 'asahi', 'ao', 'hiroto', 'ritu', 'dan',
+first_names_roma = ['yayoi', 'mengrui', 'aoi', 'ituki', 'minato', 'asahi', 'ao', 'hiroto', 'ritu', 'dan',
                     'himari', 'tumigi', 'rin', 'mei', 'aoi', 'hina', 'mio', 'riko', 'yuina', 'oanh']
-last_names = ['弥生', '宋', '高橋', '田中', '伊藤', '渡辺', '山本', '中村', '小林', '加藤',
+last_names = ['畠山', '宋', '高橋', '田中', '伊藤', '渡辺', '山本', '中村', '小林', '加藤',
               '清水', '佐藤', '鈴木', '高橋', '矢部', '田中', '山本', '中村', '伊藤', '阮']
-last_names_roma = ['yayoi', 'song', 'takahashi', 'tanaka', 'ito', 'watanabe', 'yamamoto', 'nakamura', 'kobayashi', 'kato',
+last_names_roma = ['hatakeyama', 'song', 'takahashi', 'tanaka', 'ito', 'watanabe', 'yamamoto', 'nakamura', 'kobayashi', 'kato',
                   'shimizu', 'sato', 'suzuki', 'takahashi', 'yabe', 'tanaka', 'yamamoto', 'nakamura', 'ito', 'nguyen']
-first_names.each_with_index do |first_name, index|
+first_names_roma.each_with_index do |first_name, index|
   User.create!(
   first_name: first_name,
-  last_name: last_names[index],
-  email: "#{first_names_roma[index]}_#{last_names_roma[index]}@gmail.com",
+  last_name: last_names_roma[index],
+  email: "#{first_name}_#{last_names_roma[index]}@gmail.com",
   password: 123123,
   fax_extension: 100000 + index,
   admin: false,
@@ -53,7 +53,7 @@ first_names.each_with_index do |first_name, index|
   )
   puts "#{User.count} users created..."
 end
-oanh = User.find_by(first_name: '鶯', last_name: '阮')
+oanh = User.find_by(first_name: 'oanh', last_name: 'nguyen')
 oanh.admin = true
 oanh.save
 puts "#{User.count} users created..."
