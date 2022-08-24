@@ -10,7 +10,7 @@
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
           <li class="nav-item active">
-            <p class="nav-link"><%= "Hello, #{current_user.first_name} #{current_user.last_name}"%></p>
+            <p class="nav-link"><%= "Hello, #{current_user.first_name.capitalize} #{current_user.last_name.capitalize}"%></p>
           </li>
           <li class="nav-item dropdown">
             <%= image_tag "https://ca.slack-edge.com/T02NE0241-U03NDAL298R-fe0c6826b1da-512", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
