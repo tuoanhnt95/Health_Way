@@ -1,53 +1,53 @@
-<h1>SetUps#show</h1>
-<p>Find me in app/views/set_ups/show.html.erb</p>
-<h1>Time Frame</h1>
-<%= @set_up.start_date %>
-<%= @set_up.end_date %>
-<h1>Clinic</h1>
-<% @set_up.clinics.each do |clinic| %>
-  <%= clinic.name %>
+<div class="hr-dashboard-body">
+  <h1>Time Frame</h1>
+  <%= @set_up.start_date %>
+  <%= @set_up.end_date %>
+  <h1>Clinic</h1>
+  <% @set_up.clinics.each do |clinic| %>
+    <%= clinic.name %>
+    <br>
+  <% end %>
+  <h1>Completion Rate</h1>
+  <%= ((@set_up.health_checks.count) / (@set_up.company.users.count).to_f * 100).ceil %>
   <br>
-<% end %>
-<h1>Completion Rate</h1>
-<%= ((@set_up.health_checks.count) / (@set_up.company.users.count).to_f * 100).ceil %>
-<br>
-<div class="container">
-  <table class="table table-sm table-striped table-hover table-primary-color">
-    <thead>
-      <tr>
-        <th scope="col">Emp. Id</th>
-        <th scope="col">Employee Name</th>
-        <th scope="col">Health Check Date</th>
-        <th scope="col">Status</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @set_up.company.users.each do |user| %>
+  <div class="container">
+    <table class="table table-sm table-striped table-hover table-primary-color">
+      <thead>
         <tr>
-          <th scope="row" class="text-center">
-            <%= user.id %>
-          </th>
-          <td>
-            <%= "#{user.last_name.capitalize} #{user.first_name.capitalize}" %>
-          </td>
-          <% if user.health_checks.find_by(set_up: @set_up) == nil %>
-            <td>
-              No appointment
-            </td>
-            <td>
-            </td>
-          <% else %>
-            <td>
-              <%= user.health_checks.find_by(set_up: @set_up).date %>
-            </td>
-            <td class="text-center">
-              <% if user.health_checks.find_by(set_up: @set_up).result.attached? %>
-                <i class="fa-solid fa-circle-check"></i>
-              <% end %>
-            </td>
-          <% end %>
+          <th scope="col">Emp. Id</th>
+          <th scope="col">Employee Name</th>
+          <th scope="col">Health Check Date</th>
+          <th scope="col">Status</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @set_up.company.users.each do |user| %>
+          <tr>
+            <th scope="row" class="text-center">
+              <%= user.id %>
+            </th>
+            <td>
+              <%= "#{user.last_name.capitalize} #{user.first_name.capitalize}" %>
+            </td>
+            <% if user.health_checks.find_by(set_up: @set_up) == nil %>
+              <td>
+                No appointment
+              </td>
+              <td>
+              </td>
+            <% else %>
+              <td>
+                <%= user.health_checks.find_by(set_up: @set_up).date %>
+              </td>
+              <td class="text-center">
+                <% if user.health_checks.find_by(set_up: @set_up).result.attached? %>
+                  <i class="fa-solid fa-circle-check"></i>
+                <% end %>
+              </td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
