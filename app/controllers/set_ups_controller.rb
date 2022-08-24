@@ -1,5 +1,6 @@
 class SetUpsController < ApplicationController
   before_action :set_set_up, only: [:show]
+  before_action :check_admin, only: [:index, :show]
   def index
     @set_ups = policy_scope(SetUp)
   end
@@ -33,5 +34,9 @@ class SetUpsController < ApplicationController
 
   def set_set_up
     @set_up = SetUp.find(params[:id])
+  end
+
+  def check_admin
+    redirect_to health_checks_path unless current_user.admin?
   end
 end
