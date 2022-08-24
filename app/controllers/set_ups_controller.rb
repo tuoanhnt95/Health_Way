@@ -37,6 +37,8 @@ class SetUpsController < ApplicationController
   end
 
   def check_admin
-    redirect_to health_checks_path unless current_user.admin?
+    # current_user.admin? or redirect_to health_checks_path
+    flash[:alert] = "You are not authorized to perform this action."
+    redirect_back(fallback_location: health_checks_path)
   end
 end
