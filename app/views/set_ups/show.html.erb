@@ -11,29 +11,43 @@
 <h1>Completion Rate</h1>
 <%= ((@set_up.health_checks.count) / (@set_up.company.users.count).to_f * 100).ceil %>
 <br>
-<table class="mt-4">
-  <tr>
-    <th>Employee Name</th>
-    <th>Health Check Date</th>
-    <th>Status</th>
-  </tr>
-  <% @set_up.company.users.each do |user| %>
-    <tr>
-      <td class="">
-        <%= "#{user.last_name} #{user.first_name}" %>
-      </td>
-      <% if user.health_checks.find_by(set_up: @set_up) == nil %>
-        <td class="">
-          <p >No appointment</p>
-        </td>
-      <% else %>
-        <td class="">
-          <%= user.health_checks.find_by(set_up: @set_up).date %>
-        </td>
-        <td class="">
-          <%= user.health_checks.find_by(set_up: @set_up).result.attached? %>
-        </td>
+<div class="container">
+  <table class="table table-sm table-striped table-hover table-primary-color">
+    <thead>
+      <tr>
+        <th scope="col">Emp. Id</th>
+        <th scope="col">Employee Name</th>
+        <th scope="col">Health Check Date</th>
+        <th scope="col">Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @set_up.company.users.each do |user| %>
+        <tr>
+          <th scope="row" class="text-center">
+            <%= user.id %>
+          </th>
+          <td>
+            <%= "#{user.last_name.capitalize} #{user.first_name.capitalize}" %>
+          </td>
+          <% if user.health_checks.find_by(set_up: @set_up) == nil %>
+            <td>
+              No appointment
+            </td>
+            <td>
+            </td>
+          <% else %>
+            <td>
+              <%= user.health_checks.find_by(set_up: @set_up).date %>
+            </td>
+            <td class="text-center">
+              <% if user.health_checks.find_by(set_up: @set_up).result.attached? %>
+                <i class="fa-solid fa-circle-check"></i>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
       <% end %>
-    </tr>
-  <% end %>
-</table>
+    </tbody>
+  </table>
+</div>
