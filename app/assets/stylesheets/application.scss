@@ -13,3 +13,9 @@
 @import "components/sidebar";
 @import "components/colors";
 @import "pages/index";
+
+h1 {
+  color: $green;
+  font-family: 'Roboto', sans-serif;
+  padding: 31px;
+}
