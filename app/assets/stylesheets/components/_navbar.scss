@@ -1,6 +1,12 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: $light-green;
+  height: 50px;
+}
+
+.logo {
+  color: white;
+  font-family: 'Poppins', sans-serif;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -9,4 +15,27 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+.navbar .navbar-brand {
+  display: flex;
+  flex-wrap: inherit;
+  align-items: end;
+  justify-content: space-between;
+  padding-top: 16px;
+}
+
+.navbar-lewagon .navbar-collapse {
+  flex-grow: 0;
+  padding-top: 15px;
+}
+
+.navbar-expand-sm .navbar-nav .nav-link {
+  color: $light-gray;
+}
+
+.avatar {
+  width: 40px;
+  border-radius: 50%;
+  margin-left: 8px
 }
