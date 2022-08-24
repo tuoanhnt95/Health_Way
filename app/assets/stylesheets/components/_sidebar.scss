@@ -1,0 +1,19 @@
+.sidebar {
+  min-height: calc(100vh - 66px);
+  height: 100%;
+  width: 208px;
+  background-color: $green;
+}
+
+.sidebar-list {
+  list-style: none;
+  min-height: calc(100vh - 66px);
+  padding-block: 16px;
+  padding-left: 0;
+  a {
+    text-decoration: none;
+    color: $light-gray;
+    padding: 16px;
+    display: block;
+  }
+}

@@ -10,9 +10,12 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.css" rel="stylesheet">
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js"></script>
   </head>
-  <body><%= render "navbar" %>
+  <body>
+    <%= render "navbar" %>
+    <% if current_user %>
+      <%= render "sidebar" %>
+    <% end %>
     <%= render "flashes" %>
-    <%= render "sidebar" %>
     <%= yield %>
   </body>
 </html>
