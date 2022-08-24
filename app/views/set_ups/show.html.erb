@@ -9,7 +9,10 @@
   <br>
 <% end %>
 <h1>Completion Rate</h1>
-<%= ((@set_up.health_checks.count) / (@set_up.company.users.count).to_f * 100).ceil %>
+<div class="progress">
+  <div class="progress-bar" role="progressbar" style="width: <%= @complete_rate%>%" aria-valuenow="<%= @complete_rate %>" aria-valuemin="0" aria-valuemax="100"><%= @complete_rate %>%</div>
+</div>
+
 <br>
 <div class="container">
   <table class="table table-sm table-striped table-hover table-primary-color">
