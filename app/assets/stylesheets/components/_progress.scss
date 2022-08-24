@@ -1,0 +1,11 @@
+.progress .progress-bar{
+
+  animation: progres 3s linear;
+  animation-fill-mode: forwards;
+}
+@keyframes progres{
+  0%{
+    width: 0%;
+  }
+
+};
