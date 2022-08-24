@@ -1,2 +1,14 @@
-<h1>HealthChecks#edit</h1>
-<p>Find me in app/views/health_checks/edit.html.erb</p>
+Update form
+<br>
+<br>
+<%= simple_form_for(@health_check) do |f| %>
+  <%= f.input :date %>
+  <%= f.association :clinic %>
+  <%= f.button :submit %>
+<% end %>
+<div style="width: 100%; height: 600px;"
+  data-controller="map"
+  data-map-markers-value="<%= @markers.to_json %>"
+  data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"
+>
+</div>

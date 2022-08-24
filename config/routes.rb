@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  # get 'health_checks/index'
-  # get 'health_checks/show'
-  # get 'health_checks/new'
-  # get 'health_checks/edit'
-  # get 'set_ups/index'
-  # get 'set_ups/show'
   devise_for :users
   root to: "pages#home"
 
