@@ -1,0 +1,12 @@
+<div class="sidebar">
+  <ul class="sidebar-list d-flex flex-column justify-content-evenly">
+    <% if current_user.admin%>
+      <li><%= link_to "HR Dashboard", set_up_path(SetUp.order("created_at DESC").last)  %></li>
+      <li><%= link_to "History", set_ups_path %></li>
+      <li><%= link_to "Create Session", new_set_up_path %></li>
+    <% end %>
+    <li><%= link_to "Employee Dashboard", health_checks_path %></li>
+    <li><%= link_to "Employee New", set_ups_path %></li>
+    <li><%= link_to "Employee Edit", set_ups_path %></li>
+  </ul>
+</div>
