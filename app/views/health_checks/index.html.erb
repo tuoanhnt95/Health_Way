@@ -4,6 +4,8 @@ My fax: <%= current_user.fax_extension %>
 <br>
 All My Health Checks:
 <% @health_checks.each do |health_check| %>
+  Id: <%= health_check.id %>
+  <br>
   <%= health_check.date %>
   <br>
   <%= health_check.clinic.name %>
