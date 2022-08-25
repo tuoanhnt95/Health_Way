@@ -1,7 +1,11 @@
-<h1>New set up</h1>
-<%= simple_form_for(@set_up) do |f| %>
-  <%= f.input :start_date %>
-  <%= f.input :end_date %>
-  <%= f.association :clinics, as: :check_boxes%>
-  <%= f.submit "Submit"%>
-<% end %>
+<div data-controller="litepicker" >
+  <h1>New set up</h1>
+  <%= simple_form_for(@set_up) do |f| %>
+    <div class="d-flex">
+      <%= f.input :start_date, label: "Health Check start", as: :string, input_html: { data: { litepicker_target: "start"}, class: 'calendar-range'} %>
+      <%= f.input :end_date, label: "Health Check end", as: :string, input_html: { data: { litepicker_target: "end"}, class: 'calendar-range'} %>
+    </div>
+    <%= f.association :clinics, as: :check_boxes%>
+    <%= f.submit "Submit"%>
+  <% end %>
+</div>
