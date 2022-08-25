@@ -1,18 +1,27 @@
 <div class="hr-dashboard-body">
-  <h1>Time Frame</h1>
-  <%= @set_up.start_date %>
-  <%= @set_up.end_date %>
-  <h1>Clinic</h1>
-  <% @set_up.clinics.each do |clinic| %>
-    <%= clinic.name %>
-    <br>
-  <% end %>
-  <h1>Completion Rate</h1>
-  <div class="progress bg-info">
-    <div class="progress-bar bg-success" role="progressbar" style="width: <%= @complete_rate%>%" aria-valuenow="<%= @complete_rate %>" aria-valuemin="0" aria-valuemax="100"><%= @complete_rate %>%</div>
+  <h1>HR Dashboard</h1>
+  <div class="hr-dashboard-info">
+    <div class="hr-dashboard-info-left">
+      <h3>Time Frame</h3>
+      <p><%= @set_up.start_date %> <strong>-</strong>
+      <%= @set_up.end_date %></p>
+    </div>
+    <div class="hr-dashboard-info-right">
+      <h3>Completion Rate</h3>
+      <div class="progress bg-info">
+        <div class="progress-bar bg-success" role="progressbar" style="width: <%= @complete_rate%>%" aria-valuenow="<%= @complete_rate %>" aria-valuemin="0" aria-valuemax="100"><%= @complete_rate %>%</div>
+      </div>
+    </div>
   </div>
-  <br>
-  <div class="container">
+  <h3>Clinic</h3>
+  <div class="clinic-lists">
+    <ul>
+      <% @set_up.clinics.each do |clinic| %>
+        <li><%= clinic.name.capitalize %></li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="hr-dashboard-table">
     <table class="table table-sm table-striped table-hover table-primary-color">
       <thead>
         <tr>
@@ -25,9 +34,9 @@
       <tbody>
         <% @set_up.company.users.each do |user| %>
           <tr>
-            <th scope="row" class="text-center">
+            <td scope="row" class="text-center">
               <%= user.id %>
-            </th>
+            </td>
             <td>
               <%= "#{user.last_name.capitalize} #{user.first_name.capitalize}" %>
             </td>

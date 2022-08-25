@@ -16,7 +16,14 @@
 h1 {
   color: $green;
   font-family: 'Roboto', sans-serif;
-  padding: 31px;
+  padding: 32px 0;
+}
+
+h3 {
+  color: $green;
+  font-family: 'Roboto', sans-serif;
+  padding-top: 16px;
+  font-weight: bold;
 }
 
 .root {
