@@ -1,24 +1,26 @@
-<h1>SetUps#index</h1>
-<p>Find me in app/views/set_ups/index.html.erb</p>
-<h1>Health Check History</h1>
-<table style="width:100%">
-  <tr>
-    <th>Time Frame</th>
-    <th>Complete Rate</th>
-    <th>Employee Count</th>
-  </tr>
-  <% @set_ups.each do |set_up| %>
-    <tr>
-      <td><%= link_to "#{set_up.start_date} #{set_up.end_date}", set_up_path(set_up)%></td>
-      <% complete_rate = ((set_up.health_checks.count) / (set_up.company.users.count).to_f * 100).ceil %>
-      <td>
-        <div class="progress bg-info">
-          <div class="progress-bar bg-success" role="progressbar"
-          style="width: <%= complete_rate%>%"
-          aria-valuenow="<%= complete_rate %>" aria-valuemin="0" aria-valuemax="100"><%= complete_rate %>%</div>
-        </div>
-      </td>
-      <td><%= "#{set_up.health_checks.count} / #{set_up.company.users.count}" %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="container">
+  <h1>Health Check History</h1>
+  <table style="width:100%" class="table table-sm table-striped table-hover table-primary-color table-thickness">
+    <thead>
+      <tr>
+        <th scope="col">Time Frame</th>
+        <th scope="col">Complete Rate</th>
+        <th scope="col">Employee Count</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      <% @set_ups.each do |set_up| %>
+        <tr>
+          <td class="column-width"><%= link_to "#{set_up.start_date} #{set_up.end_date}", set_up_path(set_up)%></td>
+          <% complete_rate = ((set_up.health_checks.count) / (set_up.company.users.count).to_f * 100).ceil %>
+          <td>
+            <div class="progress bg-info">
+              <div class="progress-bar bg-success" role="progressbar" style="width: <%= complete_rate%>%" aria-valuenow="<%= complete_rate %>" aria-valuemin="0" aria-valuemax="100"><%= complete_rate %>%</div>
+            </div>
+          </td>
+          <td><%= "#{set_up.health_checks.count} / #{set_up.company.users.count}" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

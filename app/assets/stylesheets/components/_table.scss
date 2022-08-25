@@ -1,4 +1,8 @@
 .table-primary-color {
+  border-bottom: transparent;
+  border-top: transparent;
+  vertical-align: middle;
+
   thead {
     background-color: $green;
     color: white;
@@ -9,6 +13,10 @@
     border-right: 1px solid $green;
   }
 
+  tbody > tr > th, td {
+    background-color: $light-light-gray;
+  }
+
   td:last-child, th:last-child{
     border-right: 0;
   }
@@ -17,4 +25,14 @@
     color: $green;
     font-size: 32px;
   }
+}
+
+.table-thickness {
+  tbody > tr {
+    height: 44px;
+  }
+}
+
+.column-width {
+  width: 238px;
 }

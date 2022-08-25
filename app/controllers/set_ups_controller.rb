@@ -7,6 +7,7 @@ class SetUpsController < ApplicationController
 
   def show
     authorize @set_up
+    @complete_rate = ((@set_up.health_checks.count) / (@set_up.company.users.count).to_f * 100).ceil
   end
 
   def new
