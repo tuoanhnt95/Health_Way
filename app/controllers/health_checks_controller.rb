@@ -1,6 +1,6 @@
 class HealthChecksController < ApplicationController
   before_action :set_set_up, only: %i[new create]
-  before_action :set_health_check, only: %i[show edit update]
+  before_action :set_health_check, only: %i[show edit update fetch_result]
 
   def index
     @health_checks = policy_scope(HealthCheck)
@@ -47,6 +47,10 @@ class HealthChecksController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def fetch_result
+    authorize @health_check
   end
 
   private
