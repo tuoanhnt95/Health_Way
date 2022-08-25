@@ -1,13 +1,14 @@
 <div data-controller="litepicker" class="custom-container">
   <h1>Create New Health Check Session</h1>
-  <div class="d-flex justify-content-center mb-5">
-    <%= simple_form_for(@set_up) do |f| %>
-      <div class="d-flex">
-        <%= f.input :start_date, label: "Health Check start", as: :string, input_html: { data: { litepicker_target: "start"}, class: 'calendar-range'} %>
-        <%= f.input :end_date, label: "Health Check end", as: :string, input_html: { data: { litepicker_target: "end"}, class: 'calendar-range'} %>
-      </div>
-      <%= f.input :clinics, collection: @clinics, input_html: {multiple: true, data: {controller: "tom-select", tom_select_options_value: {tags: true}}}  %>
-      <%= f.submit "Submit", class: "btn btn-outline-success w-100"%>
-    <% end %>
-  </div>
+  <%# <div class="d-flex justify-content-center mb-5"> %>
+  <%= simple_form_for(@set_up) do |f| %>
+    <h5>Select Timeframe</h5>
+    <div class="d-flex w-100 align-items-end">
+      <%= f.input :start_date, label: false, as: :string, input_html: { data: { litepicker_target: "dateselect"}, class: 'calendar-range'} %>
+      <%= f.input :end_date, label: false, as: :string, input_html: { data: { litepicker_target: "end"}, class: 'calendar-range'} %>
+    </div>
+    <%= f.input :clinics, collection: @clinics, input_html: {multiple: true, data: {controller: "tom-select", tom_select_options_value: {tags: true}}}  %>
+    <%= f.submit "Submit", class: "btn btn-success w-100 text-white"%>
+  <% end %>
+  <%# </div> %>
 </div>
