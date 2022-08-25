@@ -30,12 +30,13 @@
   }
 
   li {
+    color: $light-gray;
     padding: 8px;
   }
 }
 
 .clinic-lists::-webkit-scrollbar {
-  width: 1em;
+  width: 10em;
 }
 
 .hr-dashboard-table {
