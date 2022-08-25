@@ -1,6 +1,7 @@
 .table-primary-color {
   border-bottom: transparent;
   border-top: transparent;
+  vertical-align: middle;
 
   thead {
     background-color: $green;
@@ -24,4 +25,14 @@
     color: $green;
     font-size: 32px;
   }
+}
+
+.table-thickness {
+  tbody > tr {
+    height: 44px;
+  }
+}
+
+.column-width {
+  width: 238px;
 }
