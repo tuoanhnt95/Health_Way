@@ -5,19 +5,10 @@
       <h3>Time Frame</h3>
       <p class="text-light"><%= @set_up.start_date %> <strong>-</strong>
         <%= @set_up.end_date %></p>
-      <h3>Clinic</h3>
-      <div class="clinic-lists">
-        <ul>
-          <% @set_up.clinics.each do |clinic| %>
-            <li><%= clinic.name.capitalize %></li>
-          <% end %>
-        </ul>
-      </div>
     </div>
     <div class="hr-dashboard-info-right">
-      <%# <h3>Completion Rate</h3> %>
       <h3>Appointments Booked</h3>
-      <div class="progress bg-info">
+      <div class="progress bg-info" style="width: 480px">
         <div class="progress-bar bg-success" role="progressbar" style="width: <%= @appointment_rate%>%" aria-valuenow="<%= @appointment_rate %>" aria-valuemin="0" aria-valuemax="100"><%= @appointment_rate %>%</div>
       </div>
       <h3>Results Received</h3>
@@ -25,6 +16,14 @@
         <div class="progress-bar bg-success" role="progressbar" style="width: <%= @complete_rate%>%" aria-valuenow="<%= @complete_rate %>" aria-valuemin="0" aria-valuemax="100"><%= @complete_rate %>%</div>
       </div>
     </div>
+  </div>
+  <h3>Clinic</h3>
+  <div class="clinic-lists">
+    <ul>
+      <% @set_up.clinics.each do |clinic| %>
+        <li><%= clinic.name.capitalize %></li>
+      <% end %>
+    </ul>
   </div>
   <div class="hr-dashboard-table">
     <table class="table table-sm table-striped table-hover table-primary-color">
