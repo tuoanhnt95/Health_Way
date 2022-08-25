@@ -15,8 +15,16 @@
   padding-left: 0;
   a {
     text-decoration: none;
-    color: $light-gray;
+    color: lightgrey;
     padding: 16px;
     display: block;
+  }
+}
+
+.sidebar-active {
+  background-color: #2f7d84;
+  border-left: 8px solid white;
+  a {
+    color:white;
   }
 }
