@@ -1,4 +1,7 @@
 .table-primary-color {
+  border-bottom: transparent;
+  border-top: transparent;
+
   thead {
     background-color: $green;
     color: white;
@@ -7,6 +10,10 @@
 
   th, td {
     border-right: 1px solid $green;
+  }
+
+  tbody > tr > th, td {
+    background-color: $light-light-gray;
   }
 
   td:last-child, th:last-child{
