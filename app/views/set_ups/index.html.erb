@@ -1,6 +1,6 @@
 <div class="container">
   <h1>Health Check History</h1>
-  <table style="width:100%" class="table table-sm table-striped table-hover table-primary-color">
+  <table style="width:100%" class="table table-sm table-striped table-hover table-primary-color table-thickness">
     <thead>
       <tr>
         <th scope="col">Time Frame</th>
@@ -11,7 +11,7 @@
     <tbody class="text-center">
       <% @set_ups.each do |set_up| %>
         <tr>
-          <td><%= link_to "#{set_up.start_date} #{set_up.end_date}", set_up_path(set_up)%></td>
+          <td class="column-width"><%= link_to "#{set_up.start_date} #{set_up.end_date}", set_up_path(set_up)%></td>
           <% complete_rate = ((set_up.health_checks.count) / (set_up.company.users.count).to_f * 100).ceil %>
           <td>
             <div class="progress bg-info">

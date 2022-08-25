@@ -1,11 +1,13 @@
-<div data-controller="litepicker" >
-  <h1>New set up</h1>
-  <%= simple_form_for(@set_up) do |f| %>
-    <div class="d-flex">
-      <%= f.input :start_date, label: "Health Check start", as: :string, input_html: { data: { litepicker_target: "start"}, class: 'calendar-range'} %>
-      <%= f.input :end_date, label: "Health Check end", as: :string, input_html: { data: { litepicker_target: "end"}, class: 'calendar-range'} %>
-    </div>
-    <%= f.association :clinics, as: :check_boxes%>
-    <%= f.submit "Submit"%>
-  <% end %>
+<div data-controller="litepicker" class="custom-container">
+  <h1>Create New Health Check Session</h1>
+  <div class="d-flex justify-content-center mb-5">
+    <%= simple_form_for(@set_up) do |f| %>
+      <div class="d-flex">
+        <%= f.input :start_date, label: "Health Check start", as: :string, input_html: { data: { litepicker_target: "start"}, class: 'calendar-range'} %>
+        <%= f.input :end_date, label: "Health Check end", as: :string, input_html: { data: { litepicker_target: "end"}, class: 'calendar-range'} %>
+      </div>
+      <%= f.input :clinics, collection: @clinics, input_html: {multiple: true, data: {controller: "tom-select", tom_select_options_value: {tags: true}}}  %>
+      <%= f.submit "Submit", class: "btn btn-outline-success w-100"%>
+    <% end %>
+  </div>
 </div>
