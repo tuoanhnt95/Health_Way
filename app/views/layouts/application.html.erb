@@ -12,11 +12,11 @@
   </head>
   <body>
     <%= render "navbar" %>
-    <div class="d-flex">
+      <%= render "flashes" %>
+    <div class="root">
       <% if current_user %>
         <%= render "sidebar" %>
       <% end %>
-      <%= render "flashes" %>
       <%= yield %>
     </div>
   </body>
