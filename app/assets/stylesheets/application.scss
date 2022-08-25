@@ -18,3 +18,8 @@ h1 {
   font-family: 'Roboto', sans-serif;
   padding: 31px;
 }
+
+.root {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+}
