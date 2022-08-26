@@ -6,4 +6,5 @@ class HealthCheck < ApplicationRecord
   has_one_attached :result
 
   validates :date, presence: true
+  validates :set_up, uniqueness: { scope: :user }
 end
