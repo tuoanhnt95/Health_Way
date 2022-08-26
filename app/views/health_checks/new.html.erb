@@ -1,8 +1,13 @@
-NEW HEALTH CHECK FORM
+<h1>
+  NEW HEALTH CHECK FORM
+</h1>
 <br>
 <br>
-<%= simple_form_for [@set_up, @health_check] do |f| %>
-  <%= f.input :date %>
-  <%= f.association :clinic %>
-  <%= f.submit "Confirm", class: "btn btn-primary" %>
-<% end %>
+<div>
+  <%= simple_form_for [@set_up, @health_check] do |f| %>
+    <%= f.input :date %>
+    <%= f.association :clinic %>
+    <%= f.input :result, as: :file %>
+    <%= f.submit "Confirm", class: "btn btn-primary" %>
+  <% end %>
+</div>

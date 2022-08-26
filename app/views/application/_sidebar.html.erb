@@ -11,14 +11,14 @@
         <%= link_to "Create Session", new_set_up_path %>
       </li>
     <% end %>
-    <li>
+    <li class = "<%= current_page?(controller: 'health_checks', action: 'index') ? 'sidebar-active' : '' %>">
       <%= link_to "Employee Dashboard", health_checks_path %>
     </li>
-    <li class = "<%= current_page?(controller: 'health_checks', set_up_id: '', action: 'new') ? 'sidebar-active' : '' %>">
-      <%= link_to "Employee New", set_ups_path %>
+    <li class = "<%= current_page?(controller: 'health_checks', set_up_id: SetUp.order("created_at DESC").first.id, action: 'new') ? 'sidebar-active' : '' %>">
+      <%= link_to "Employee New", new_set_up_health_check_path(SetUp.order("created_at DESC").first) %>
     </li>
-    <li>
-      <%= link_to "Employee Edit", set_ups_path %>
+    <li class = "<%= current_page?(controller: 'health_checks', id: HealthCheck.order("created_at DESC").first.id, action: 'edit') ? 'sidebar-active' : '' %>">
+      <%= link_to "Employee Edit", edit_health_check_path(HealthCheck.order("created_at DESC").first) %>
     </li>
   </ul>
 </div>
