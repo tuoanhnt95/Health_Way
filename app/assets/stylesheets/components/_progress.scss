@@ -2,6 +2,10 @@
 
   animation: progres 3s linear;
   animation-fill-mode: forwards;
+
+  .fast {
+    animation: progres 1s linear;
+  }
 }
 @keyframes progres{
   0%{

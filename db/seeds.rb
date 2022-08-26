@@ -59,23 +59,48 @@ oanh.save
 puts "#{User.count} users created..."
 
 
-# =====================3 set up=====================
+# ===================== set up=====================
 puts "Creating new set_up..."
 set_up_2017 = SetUp.create!(
   start_date: Time.local(2017, 9, 4),
   end_date: Time.local(2017, 12, 24),
   company: company
 )
+
 set_up_2018 = SetUp.create!(
   start_date: Time.local(2018, 9, 3),
   end_date: Time.local(2018, 12, 21),
   company: company
 )
+
 set_up_2019 = SetUp.create!(
   start_date: Time.local(2019, 9, 2),
   end_date: Time.local(2019, 12, 20),
   company: company
 )
+# =======add new users=========
+User.create!(
+  first_name: 'tony',
+  last_name: 'leng',
+  email: "tony_leng@gmail.com",
+  password: 123123,
+  fax_extension: 111111,
+  admin: false,
+  company: company
+  )
+  puts "#{User.count} users created..."
+
+User.create!(
+  first_name: 'doug',
+  last_name: 'berkley',
+  email: "doug_berkley@gmail.com",
+  password: 123123,
+  fax_extension: 222222,
+  admin: false,
+  company: company
+  )
+puts "#{User.count} users created..."
+# ================
 set_up_2020 = SetUp.create!(
   start_date: Time.local(2020, 9, 7),
   end_date: Time.local(2020, 12, 18),
@@ -86,6 +111,7 @@ set_up_2021 = SetUp.create!(
   end_date: Time.local(2021, 12, 24),
   company: company
 )
+puts company.users.count
 puts "#{SetUp.count} set_up created..."
 
 #=====================15 clinic_set_up=====================
@@ -132,29 +158,6 @@ User.all.first(16).each_with_index do |user, index|
   )
   puts "#{HealthCheck.count} health_checks created for set_up_2019"
 end
-
-# =======add new users=========
-User.create!(
-  first_name: 'tony',
-  last_name: 'leng',
-  email: "tony_leng@gmail.com",
-  password: 123123,
-  fax_extension: 111111,
-  admin: false,
-  company: company
-  )
-  puts "#{User.count} users created..."
-
-User.create!(
-  first_name: 'doug',
-  last_name: 'berkley',
-  email: "doug_berkley@gmail.com",
-  password: 123123,
-  fax_extension: 222222,
-  admin: false,
-  company: company
-  )
-puts "#{User.count} users created..."
 
 User.all.first(18).each_with_index do |user, index|
   HealthCheck.create!(
