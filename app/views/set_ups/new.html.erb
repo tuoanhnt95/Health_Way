@@ -7,7 +7,7 @@
       <%= f.input :start_date, label: false, as: :string, input_html: { data: { litepicker_target: "dateselect"}, class: 'calendar-range'} %>
       <%= f.input :end_date, label: false, as: :string, input_html: { data: { litepicker_target: "end"}, class: 'calendar-range'} %>
     </div>
-    <%= f.input :clinics, collection: @clinics, input_html: {multiple: true, data: {controller: "tom-select", tom_select_options_value: {tags: true}}}  %>
+    <%= f.input :clinics, collection: @clinics, input_html: {multiple: true, data: {controller: "tom-select", tom_select_options_value: {tags: true}}} %>
     <%= f.submit "Submit", class: "btn btn-success w-100 text-white"%>
   <% end %>
   <%# </div> %>

@@ -24,9 +24,14 @@ class SetUpsController < ApplicationController
   end
 
   def create
-    @set_up = SetUp.new(set_up_params)
+    @set_up = SetUp.new(start_date: set_up_params[:start_date], end_date: set_up_params[:end_date])
     authorize @set_up
     @set_up.company = current_user.company
+    set_up_params[:clinics].reject(&:blank?).each do |clinic_id|
+      @clinic_set_up = ClinicSetUp.create(set_up: @set_up, clinic_id: clinic_id)
+      @set_up.clinic_set_ups << @clinic_set_up
+    end
+
     if @set_up.save
       redirect_to set_up_path(@set_up)
     else
@@ -37,7 +42,8 @@ class SetUpsController < ApplicationController
   private
 
   def set_up_params
-    params.require(:set_up).permit(:start_date, :end_date, :clinics)
+    params[:set_up][:clinics].reject! { |clinic| clinic.empty? }
+    params.require(:set_up).permit(:start_date, :end_date, clinics:[])
   end
 
   def set_set_up
