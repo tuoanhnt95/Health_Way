@@ -7,13 +7,13 @@
         <%= @set_up.end_date %></p>
     </div>
     <div class="hr-dashboard-info-right">
-      <h3>Appointments Booked</h3>
+      <h3>Appointments Booked <%= @appointment_count %>/<%= @employee_count %></h3>
       <div class="progress bg-info" style="width: 480px">
-        <div class="progress-bar bg-success" role="progressbar" style="width: <%= @appointment_rate%>%" aria-valuenow="<%= @appointment_rate %>" aria-valuemin="0" aria-valuemax="100"><%= @appointment_rate %>%</div>
+        <div class="progress-bar bg-success fast" role="progressbar" style="width: <%= @appointment_rate%>%" aria-valuenow="<%= @appointment_rate %>" aria-valuemin="0" aria-valuemax="100"><%= @appointment_rate %>%</div>
       </div>
-      <h3>Results Received</h3>
+      <h3>Results Received <%= @complete %>/<%= @employee_count %></h3>
       <div class="progress bg-info">
-        <div class="progress-bar bg-success" role="progressbar" style="width: <%= @complete_rate%>%" aria-valuenow="<%= @complete_rate %>" aria-valuemin="0" aria-valuemax="100"><%= @complete_rate %>%</div>
+        <div class="progress-bar bg-success fast" role="progressbar" style="width: <%= @complete_rate%>%" aria-valuenow="<%= @complete_rate %>" aria-valuemin="0" aria-valuemax="100"><%= @complete_rate %>%</div>
       </div>
     </div>
   </div>
@@ -29,7 +29,7 @@
     <table class="table table-sm table-striped table-hover table-primary-color">
       <thead>
         <tr>
-          <th scope="col">Emp. Id</th>
+          <%# <th scope="col">Emp. Id</th> %>
           <th scope="col">Employee Name</th>
           <th scope="col">Health Check Date</th>
           <th scope="col">Status</th>
@@ -38,9 +38,9 @@
       <tbody>
         <% @set_up.company.users.each do |user| %>
           <tr>
-            <td scope="row" class="text-center">
-              <%= user.id %>
-            </td>
+            <%# <td scope="row" class="text-center"> %>
+              <%# <%= user.id %> 
+            <%# </td> %>
             <td>
               <%= "#{user.last_name.capitalize} #{user.first_name.capitalize}" %>
             </td>
