@@ -9,10 +9,16 @@
     <div class="hr-dashboard-info-right">
       <h3>Appointments Booked <%= @appointment_count %>/<%= @employee_count %></h3>
       <div class="progress bg-info" style="width: 480px">
+        <% if @appointment_count == 0 %>
+          <p class="text-light text-center"> 0%</p>
+        <% end %>
         <div class="progress-bar bg-success fast" role="progressbar" style="width: <%= @appointment_rate%>%" aria-valuenow="<%= @appointment_rate %>" aria-valuemin="0" aria-valuemax="100"><%= @appointment_rate %>%</div>
       </div>
       <h3>Results Received <%= @complete %>/<%= @employee_count %></h3>
       <div class="progress bg-info">
+        <% if @complete == 0 %>
+          <p class="text-light text-center"> 0%</p>
+        <% end %>
         <div class="progress-bar bg-success fast" role="progressbar" style="width: <%= @complete_rate%>%" aria-valuenow="<%= @complete_rate %>" aria-valuemin="0" aria-valuemax="100"><%= @complete_rate %>%</div>
       </div>
     </div>
@@ -39,7 +45,7 @@
         <% @set_up.company.users.each do |user| %>
           <tr>
             <%# <td scope="row" class="text-center"> %>
-              <%# <%= user.id %> 
+            <%# <%= user.id %>
             <%# </td> %>
             <td>
               <%= "#{user.last_name.capitalize} #{user.first_name.capitalize}" %>
