@@ -1,7 +1,7 @@
 <div class="sidebar">
   <ul class="sidebar-list d-flex flex-column justify-content-evenly">
     <% if current_user.admin%>
-      <li class = "<%= current_page?(action: 'show', id: SetUp.order("created_at DESC").first.id ) ? 'sidebar-active' : '' %>">
+      <li class = "<%= current_page?(controller: 'set_ups', action: 'show', id: SetUp.order("created_at DESC").first.id ) ? 'sidebar-active' : '' %>">
         <%= link_to "HR Dashboard", set_up_path(SetUp.order("created_at DESC").first) %>
       </li>
       <li class = "<%= current_page?(set_ups_path) ? 'sidebar-active' : '' %>">
