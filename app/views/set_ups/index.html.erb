@@ -8,7 +8,7 @@
         <th scope="col">Employee Count</th>
       </tr>
     </thead>
-    <tbody class="text-center text-width">
+    <tbody class="text-center">
       <% @set_ups.each do |set_up| %>
         <tr>
           <td class="column-width"><%= link_to "#{set_up.start_date} #{set_up.end_date}", set_up_path(set_up)%></td>
@@ -18,7 +18,7 @@
               <div class="progress-bar bg-success" role="progressbar" style="width: <%= complete_rate%>%" aria-valuenow="<%= complete_rate %>" aria-valuemin="0" aria-valuemax="100"><%= complete_rate %>%</div>
             </div>
           </td>
-          <td class="another-column-width"><%= "#{set_up.health_checks.count} / #{set_up.company.users.count}" %></td>
+          <td><%= "#{set_up.health_checks.count} / #{set_up.company.users.count}" %></td>
         </tr>
       <% end %>
     </tbody>
