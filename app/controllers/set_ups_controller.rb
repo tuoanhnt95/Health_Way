@@ -29,7 +29,6 @@ class SetUpsController < ApplicationController
     @set_up.company = current_user.company
     set_up_params[:clinics].reject(&:blank?).each do |clinic_id|
       @clinic_set_up = ClinicSetUp.create(set_up: @set_up, clinic_id: clinic_id)
-      @clinic_set_up.save
       @set_up.clinic_set_ups << @clinic_set_up
     end
 
