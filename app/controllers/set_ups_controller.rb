@@ -37,6 +37,7 @@ class SetUpsController < ApplicationController
     end
 
     if @set_up.save
+      notification = SetUpNoticifation.with(comment: "")
       redirect_to set_up_path(@set_up)
     else
       render :new, status: :unprocessable_entity
