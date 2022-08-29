@@ -14,7 +14,6 @@ class HealthChecksController < ApplicationController
 
   def new
     @health_check = HealthCheck.new
-    @clinics = Clinic.all
     authorize @health_check
   end
 
