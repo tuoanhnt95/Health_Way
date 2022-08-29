@@ -6,6 +6,7 @@ class HealthChecksController < ApplicationController
 
   def index
     @health_checks = policy_scope(HealthCheck)
+    authorize @health_checks
   end
 
   def show

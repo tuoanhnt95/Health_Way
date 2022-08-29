@@ -7,7 +7,7 @@ require "rails/all"
 Bundler.require(*Rails.groups)
 
 module HealthWay
-  class Application < Rails::Application
+  class Application < Rails::Applicationpull 
     config.generators do |generate|
       generate.assets false
       generate.helper false

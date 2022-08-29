@@ -1,3 +1,5 @@
+<div>
+
 My email: <%= current_user.email %>
 <br>
 My fax: <%= current_user.fax_extension %>
@@ -12,15 +14,18 @@ All My Health Checks:
   <br>
   Status: <%= health_check.result.attached? ? "Completed" : "Pending" %>
   <br>
-  PDF Download
+    <% if health_check.result.attached? %>
+      <%= link_to cl_image_path(health_check.result.key), target: :_blank, class: "btn btn-primary" do %>
+        Result
+      <% end %>
+    <% end %>
   <br>
   <br>
 <% end %>
 <br>
 <br>
-
 <br>
 <br>
-
 <br>
 <br>
+</div>
