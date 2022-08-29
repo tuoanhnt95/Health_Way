@@ -11,6 +11,9 @@
 
   th, td {
     border-right: 1px solid $green;
+    a {
+      color: $gray;
+    }
   }
 
   tbody > tr > th, td {

@@ -3,6 +3,7 @@
   justify-content: space-between;
 }
 .hr-dashboard-info-left {
+  width: 40%;
   p {
     padding: 2px;
     border-radius: 3px;
@@ -11,10 +12,12 @@
   }
 }
 
+
 .hr-dashboard-info-right {
 display: grid;
 grid-template-rows: auto 1fr;
 }
+
 
 .clinic-lists {
   background-color: $light-green;

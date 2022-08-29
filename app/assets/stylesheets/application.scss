@@ -26,7 +26,12 @@ h3 {
   padding-top: 16px;
   font-weight: bold;
 }
-
+h4 {
+  color: $green;
+  font-family: 'Roboto', sans-serif;
+  padding-top: 16px;
+  font-weight: bold;
+}
 .root {
   display: grid;
   grid-template-columns: 235px 1fr;
@@ -35,4 +40,8 @@ h3 {
 .custom-container {
   width: 800px;
   margin: 0 auto;
+}
+
+a {
+  text-decoration: none;
 }

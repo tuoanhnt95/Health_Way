@@ -3,18 +3,21 @@ class SetUpsController < ApplicationController
   before_action :check_admin, only: [:index, :show]
   def index
     @set_ups = policy_scope(SetUp)
+    @employee_count = User.all.count
   end
 
   def show
     authorize @set_up
-    @appointment_rate = ((@set_up.health_checks.count) / (@set_up.company.users.count).to_f * 100).ceil
+    @appointment_count = @set_up.health_checks.count
+    @employee_count = @set_up.company.users.count
+    @appointment_rate = (@appointment_count / @employee_count.to_f * 100).ceil
     @complete = 0
     @set_up.health_checks.each do |health_check|
       if health_check.result.attached?
         @complete += 1
       end
     end
-    @complete_rate = (@complete / (@set_up.company.users.count).to_f * 100).ceil
+    @complete_rate = (@complete / @employee_count.to_f * 100).ceil
   end
 
   def new
