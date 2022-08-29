@@ -3,6 +3,7 @@ class SetUpsController < ApplicationController
   before_action :check_admin, only: [:index, :show]
   def index
     @set_ups = policy_scope(SetUp)
+    @employee_count = User.all.count
   end
 
   def show
