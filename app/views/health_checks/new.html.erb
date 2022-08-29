@@ -3,11 +3,17 @@
 </h1>
 <br>
 <br>
-<div>
-  <%= simple_form_for [@set_up, @health_check] do |f| %>
-    <%= f.input :date %>
-    <%= f.association :clinic %>
-    <%= f.input :result, as: :file %>
-    <%= f.submit "Confirm", class: "btn btn-primary" %>
-  <% end %>
-</div>
+<% if @set_up.users.include?(current_user) %>
+  <p>No new set_up to assign</p>
+<% else %>
+  <div>
+  <p>Time Frame</p>
+  <p><%= "#{@set_up.start_date}-#{@set_up.end_date}" %></p>
+    <%= simple_form_for [@set_up, @health_check] do |f| %>
+      <%= f.input :date, html5: true, input_html: {min: @set_up.start_date, max: @set_up.end_date} %>
+      <%= f.association :clinic, collection: @set_up.clinics %>
+      <%= f.input :result, as: :file %>
+      <%= f.submit "Confirm", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+<% end %>
