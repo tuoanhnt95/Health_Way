@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   end
 
   resources :health_checks, only: %i[index show edit update]
+
+  post 'submit_result', to: 'health_checks#submit_result'
 end
