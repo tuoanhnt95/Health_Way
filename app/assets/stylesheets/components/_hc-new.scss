@@ -1,0 +1,31 @@
+.hc-new-page-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.selectclinic {
+  width: 402px;
+}
+
+.top-clinics {
+  background-color: $green;
+  color: $light-light-gray;
+  padding: 8px;
+  width: 400px;
+  height: 136px;
+  overflow-y: scroll;
+}
+
+.page-top {
+  margin-top: 64px;
+  border-top: $light-green solid 2px;
+}
+
+.page-bottom {
+  margin-top: 64px;
+  border-top: $light-green solid 2px;
+}
+
+.timeframeheader {
+  width: 402px;
+}
