@@ -1,6 +1,6 @@
 <div data-controller="litepicker" class="custom-container">
   <h1>Create New Health Check Session</h1>
-  <%# <div class="d-flex justify-content-center mb-5"> %>
+
   <%= simple_form_for(@set_up) do |f| %>
     <h5>Select Timeframe</h5>
     <div class="d-flex w-100 align-items-end">
@@ -10,5 +10,12 @@
     <%= f.input :clinics, collection: @clinics, input_html: {multiple: true, data: {controller: "tom-select", tom_select_options_value: {tags: true}}} %>
     <%= f.submit "Submit", class: "btn btn-success w-100 text-white"%>
   <% end %>
-  <%# </div> %>
+    <div class="top-clinics">
+    <h5>Top Clinics</h5>
+    <% @top_clinics.each do |clinic| %>
+      <ul>
+        <li><%= "#{clinic.name}(#{clinic.health_checks.count})" %></li>
+      </ul>
+    <% end %>
+  </div>
 </div>
