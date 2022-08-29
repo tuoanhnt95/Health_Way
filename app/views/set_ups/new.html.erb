@@ -1,11 +1,10 @@
 <div data-controller="litepicker" class="custom-container">
-  <h1>Create New Health Check Session</h1>
-
+  <h1>Create Health Check Session</h1>
   <%= simple_form_for(@set_up) do |f| %>
     <h5>Select Timeframe</h5>
     <div class="d-flex w-100 align-items-end">
-      <%= f.input :start_date, label: false, as: :string, input_html: { data: { litepicker_target: "dateselect"}, class: 'calendar-range'} %>
-      <%= f.input :end_date, label: false, as: :string, input_html: { data: { litepicker_target: "end"}, class: 'calendar-range'} %>
+      <%= f.input :start_date, label: "Start Date", as: :date, html5: true %>
+      <%= f.input :end_date, label: "End Date", as: :date, html5: true %>
     </div>
     <%= f.input :clinics, collection: @clinics, input_html: {multiple: true, data: {controller: "tom-select", tom_select_options_value: {tags: true}}} %>
     <%= f.submit "Submit", class: "btn btn-success w-100 text-white"%>
