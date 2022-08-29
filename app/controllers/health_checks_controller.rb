@@ -63,6 +63,6 @@ class HealthChecksController < ApplicationController
   end
 
   def health_check_params
-    params.require(:health_check).permit(:date, :clinic_id, :set_up_id)
+    params.require(:health_check).permit(:date, :clinic_id, :result)
   end
 end
