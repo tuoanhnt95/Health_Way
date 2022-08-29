@@ -22,6 +22,7 @@ class SetUpsController < ApplicationController
 
   def new
     @clinics = Clinic.all
+    @top_clinics = Clinic.joins(:health_checks).select("clinics.*, COUNT(*) AS count").group("clinics.id").order(count: :desc).first(5)
     @set_up = SetUp.new
     authorize @set_up
   end
