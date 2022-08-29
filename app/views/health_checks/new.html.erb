@@ -3,8 +3,11 @@
 </h1>
 <br>
 <br>
-<div>
-  <%= simple_form_for [@set_up, @health_check] do |f| %>
+<div data-controller="show-result">
+  <%= simple_form_for([@set_up, @health_check],
+  data: { show_result_target: "form",
+          action: "submit->show-result#show"
+  }) do |f| %>
     <%= f.input :date %>
     <%= f.association :clinic %>
     <%= f.input :result, as: :file %>

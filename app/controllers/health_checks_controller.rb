@@ -1,6 +1,8 @@
 class HealthChecksController < ApplicationController
   before_action :set_set_up, only: %i[new create]
-  before_action :set_health_check, only: %i[show edit update fetch_result]
+  before_action :set_health_check, only: %i[show edit update]
+  skip_before_action :verify_authenticity_token, only: :submit_result
+  skip_before_action :authenticate_user!, only: :submit_result
 
   def index
     @health_checks = policy_scope(HealthCheck)
@@ -49,8 +51,17 @@ class HealthChecksController < ApplicationController
     end
   end
 
-  def fetch_result
-    authorize @health_check
+  def submit_result
+    # find the health check to add the results to
+    # get the pdf from the body of the request
+    # attach the pdf to the healthcheck with Cloudinary
+    skip_authorization
+    email = Mail.new(params[:email])
+    attachment = email.attachments.first.read
+    health_check = User.find_by(first_name: "oanh").health_checks.last
+    # binding.pry
+    health_check.result.attach(io: StringIO.new(attachment), filename: "OanhNguyen.pdf", content_type: "application/pdf")
+    health_check.save
   end
 
   private
@@ -64,6 +75,6 @@ class HealthChecksController < ApplicationController
   end
 
   def health_check_params
-    params.require(:health_check).permit(:date, :clinic_id, :set_up_id, :result)
+    params.require(:health_check).permit(:date, :clinic_id, :result)
   end
 end
