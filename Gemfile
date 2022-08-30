@@ -81,6 +81,5 @@ gem "font-awesome-sass", "~> 6.1"
 gem "geocoder"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "rails_admin", "~> 3.0"
-gem "sassc-rails"
 
 gem "noticed", "~> 1.5"
