@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   resources :notifications do
     post :read_all, on: :collection
   end
+
+  post 'submit_result', to: 'health_checks#submit_result'
 end

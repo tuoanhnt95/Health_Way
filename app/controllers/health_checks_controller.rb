@@ -1,9 +1,12 @@
 class HealthChecksController < ApplicationController
   before_action :set_set_up, only: %i[new create]
-  before_action :set_health_check, only: %i[show edit update fetch_result]
+  before_action :set_health_check, only: %i[show edit update]
+  skip_before_action :verify_authenticity_token, only: :submit_result
+  skip_before_action :authenticate_user!, only: :submit_result
 
   def index
     @health_checks = policy_scope(HealthCheck)
+    authorize @health_checks
   end
 
   def show
@@ -13,6 +16,14 @@ class HealthChecksController < ApplicationController
   def new
     @health_check = HealthCheck.new
     authorize @health_check
+    @clinics = Clinic.all
+    @markers = @clinics.geocoded.map do |clinic|
+      {
+        lat: clinic.latitude,
+        lng: clinic.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { clinic: clinic })
+      }
+    end
   end
 
   def create
@@ -51,8 +62,17 @@ class HealthChecksController < ApplicationController
     end
   end
 
-  def fetch_result
-    authorize @health_check
+  def submit_result
+    # find the health check to add the results to
+    # get the pdf from the body of the request
+    # attach the pdf to the healthcheck with Cloudinary
+    skip_authorization
+    email = Mail.new(params[:email])
+    attachment = email.attachments.first.read
+    health_check = User.find_by(first_name: "doug").health_checks.last
+    # binding.pry
+    health_check.result.attach(io: StringIO.new(attachment), filename: "DougBerkley2022.jpeg", content_type: "application/jpeg")
+    health_check.save
   end
 
   private
