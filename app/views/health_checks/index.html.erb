@@ -1,31 +1,36 @@
-<div>
-
-My email: <%= current_user.email %>
-<br>
-My fax: <%= current_user.fax_extension %>
-<br>
-All My Health Checks:
-<% @health_checks.each do |health_check| %>
-  Id: <%= health_check.id %>
-  <br>
-  <%= health_check.date %>
-  <br>
-  <%= health_check.clinic.name %>
-  <br>
-  Status: <%= health_check.result.attached? ? "Completed" : "Pending" %>
-  <br>
-    <% if health_check.result.attached? %>
-      <%= link_to cl_image_path(health_check.result.key, attachment: true), target: :_blank, class: "btn btn-primary" do %>
-        Result
+<div class="wat d-flex">
+  <div class="page-body">
+    <h1>Employee Dashboard</h1>
+    <h3>Email</h3>
+    <p class="wordsw">Use this email if the clinic you attend will send your health check results via email.</p>
+    <p class="email"><%= current_user.email %></p>
+    <h3>Fax Number</h3>
+    <p class="wordsw">Use this fax number if the clinic you attend will send your health check results via fax.</p>
+    <p class="fax"><%= current_user.fax_extension %></p>
+  </div>
+  <div class="containery">
+    <table style="width:100%" class="table table-sm table-striped table-hover table-primary-color table-thickness">
+      <thead class="fgreen">
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Clinic Name</th>
+          <th scope="col">Results</th>
+        </tr>
+      </thead>
+      <% @health_checks.each do |health_check| %>
+        <tr>
+          <td><%= health_check.date %></td>
+          <td><%= health_check.clinic.name%></td>
+          <td><%= health_check.result.attached? ? "Completed" : "Pending" %></td>
+          <% if health_check.result.attached? %>
+            <td>
+              <%= link_to cl_image_path(health_check.result.key, attachment: true), target: :_blank, class: "btn btn-primary" do %>
+                Result
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
       <% end %>
-    <% end %>
-  <br>
-  <br>
-<% end %>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+    </table>
+  </div>
 </div>
