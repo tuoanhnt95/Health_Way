@@ -18,7 +18,7 @@
             <th scope="col">Results</th>
           </tr>
         </thead>
-        <% @health_checks.each do |health_check| %>
+        <% @health_checks.order('date ASC').each do |health_check| %>
           <tr>
             <td><%= health_check.date %></td>
             <td><%= health_check.clinic.name%></td>
