@@ -1,0 +1,17 @@
+<% @notifications = current_user.notifications.where(type: "SetUpNotification") %>
+<li class="nav-item dropdown">
+  <span data-bs-toggle="dropdown">EM<i class="fa-solid fa-bell"></i></span>
+  (<%= @notifications.unread.count  %>)
+  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+    <% if  @notifications.unread.count == 0%>
+      <p>No new set up</p>
+    <% else %>
+      <% @notifications.each do |notification| %>
+        <% if notification.unread? %>
+          <%= link_to  notification.to_notification.message, notification.to_notification.url, class: "dropdown-item"%>
+        <% end %>
+      <% end %>
+
+    <% end %>
+  </div>
+</li>

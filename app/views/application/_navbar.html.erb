@@ -12,21 +12,10 @@
           <li class="nav-item active">
             <p class="nav-link"><%= "Hello, #{current_user.first_name.capitalize} #{current_user.last_name.capitalize}"%></p>
           </li>
-          <li class="nav-item dropdown">
-            <span data-bs-toggle="dropdown">Notification</span>
-            (<%= current_user.notifications.unread.count  %>)
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <% if  current_user.notifications.unread.count == 0%>
-                <p>No new set up</p>
-              <% else %>
-                <% current_user.notifications.each do |notification| %>
-                  <% if notification.unread? %>
-                    <%= link_to  notification.to_notification.message, notification.to_notification.url, class: "dropdown-item"%>
-                  <% end %>
-                <% end %>
-              <% end %>
-            </div>
-          </li>
+          <% if current_user.admin %>
+            <%= render "notification_for_hr" %>
+          <% end %>
+          <%= render "notification_for_employee" %>
           <li class="nav-item dropdown">
             <%= image_tag "https://ca.slack-edge.com/T02NE0241-U03NDAL298R-fe0c6826b1da-512", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

@@ -8,4 +8,8 @@ Rails.application.routes.draw do
   end
 
   resources :health_checks, only: %i[index show edit update]
+
+  resources :notifications do
+    post :read_all, on: :collection
+  end
 end

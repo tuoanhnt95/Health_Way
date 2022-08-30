@@ -21,7 +21,9 @@ class HealthChecksController < ApplicationController
     @health_check.set_up = @set_up
     authorize @health_check
     if @health_check.save
-      current_user.notifications.find { |noti| noti[:params][:set_up].id == @set_up.id }.mark_as_read!
+      current_user.notifications.find { |noti| noti.params[:set_up] == @set_up }.mark_as_read!
+      notification = HealthCheckNotification.with(health_check: @health_check)
+      notification.deliver(@health_check.set_up.users.where(admin: true))
       redirect_to health_checks_path
     else
       render :new, status: :unprocessable_entity
