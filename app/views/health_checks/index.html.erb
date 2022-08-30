@@ -22,6 +22,13 @@
           <td><%= health_check.date %></td>
           <td><%= health_check.clinic.name%></td>
           <td><%= health_check.result.attached? ? "Completed" : "Pending" %></td>
+          <% if health_check.result.attached? %>
+            <td>
+              <%= link_to cl_image_path(health_check.result.key, attachment: true), target: :_blank, class: "btn btn-primary" do %>
+                Result
+              <% end %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </table>

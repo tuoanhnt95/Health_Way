@@ -39,3 +39,14 @@
 .column-width {
   width: 238px;
 }
+
+.hr-dashboard-table {
+  overflow-y: scroll;
+  max-height: 465px;
+  max-width: 600px;
+}
+
+thead {
+  position: sticky;
+  top: 0;
+}

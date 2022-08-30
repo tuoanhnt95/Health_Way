@@ -1,14 +1,31 @@
 <div data-controller="litepicker" class="custom-container">
-  <h1>Create New Health Check Session</h1>
-  <%# <div class="d-flex justify-content-center mb-5"> %>
-  <%= simple_form_for(@set_up) do |f| %>
-    <h5>Select Timeframe</h5>
-    <div class="d-flex w-100 align-items-end">
-      <%= f.input :start_date, label: false, as: :string, input_html: { data: { litepicker_target: "dateselect"}, class: 'calendar-range'} %>
-      <%= f.input :end_date, label: false, as: :string, input_html: { data: { litepicker_target: "end"}, class: 'calendar-range'} %>
+  <h1>Create Health Check Session</h1>
+  <div class="page-top d-flex justify-content-evenly hc-new-page-body pt-5">
+    <div class="timeframeheader">
+      <h5 class="fw-bold">Select Time Frame</h5>
+      <p>Choose the start and end dates for your new health check session.</p>
     </div>
-    <%= f.input :clinics, collection: @clinics, input_html: {multiple: true, data: {controller: "tom-select", tom_select_options_value: {tags: true}}} %>
-    <%= f.submit "Submit", class: "btn btn-success w-100 text-white"%>
-  <% end %>
-  <%# </div> %>
+    <div class="datepicker">
+      <%= simple_form_for(@set_up) do |f| %>
+        <div class="d-flex w-100 align-items-end">
+          <%= f.input :start_date, label: "Start Date", as: :date, html5: true %>
+          <%= f.input :end_date, label: "End Date", as: :date, html5: true %>
+        </div>
+      </div>
+    </div>
+    <div class="page-bottom d-flex justify-content-evenly pt-5">
+      <div class="top-clinics">
+        <h5 class="fw-bold">Top clinics used by employees</h5>
+        <% @top_clinics.each do |clinic| %>
+          <ul>
+            <li class="fw-light"><%= "#{clinic.name}(#{clinic.health_checks.count} employees)" %></li>
+          </ul>
+        <% end %>
+      </div>
+      <div class="selectclinic">
+        <%= f.input :clinics, class: "w-75",label: "Select Clinic", collection: @clinics, input_html: {multiple: true, data: {controller: "tom-select", tom_select_options_value: {tags: true}}}  %>
+        <%= f.submit "Submit", class: "btn btn-success w-100 text-white"%>
+      <% end %>
+    </div>
+  </div>
 </div>

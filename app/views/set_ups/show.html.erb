@@ -1,6 +1,6 @@
 <div class="custom-container">
   <h1>HR Dashboard</h1>
-  <div class="hr-dashboard-info">
+  <div class="hr-dashboard-info d-flex justify-content-evenly">
     <div class="hr-dashboard-info-left">
       <h3>Time Frame</h3>
       <p class="text-light"><%= @set_up.start_date %> <strong>-</strong>
@@ -19,8 +19,6 @@
         <% end %>
         <div class="progress-bar bg-success fast" role="progressbar" style="width: <%= @complete_rate%>%" aria-valuenow="<%= @complete_rate %>" aria-valuemin="0" aria-valuemax="100"><%= @complete_rate %>%</div>
       </div>
-    </div>
-    <div class="hr-dashboard-info-right">
       <h3>Clinic</h3>
       <div class="clinic-lists">
         <ul>
@@ -30,45 +28,43 @@
         </ul>
       </div>
     </div>
+    <div class="hr-dashboard-info-right">
+      <div class="hr-dashboard-table">
+        <table class="table table-sm table-striped table-hover table-primary-color">
+          <thead>
+            <tr>
+              <%# <th scope="col">Emp. Id</th> %>
+              <th scope="col">Employee Name</th>
+              <th scope="col">Health Check Date</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @set_up.company.users.order('last_name ASC').each do |user| %>
+              <td>
+                <%= "#{user.last_name.capitalize} #{user.first_name.capitalize}" %>
+              </td>
+              <% if user.health_checks.find_by(set_up: @set_up) == nil %>
+                <td>
+                </td>
+                <td>
+                </td>
+              <% else %>
+                <td>
+                  <%= user.health_checks.find_by(set_up: @set_up).date %>
+                </td>
+                <td class="text-center">
+                  <% if user.health_checks.find_by(set_up: @set_up).result.attached? %>
+                    <i class="fa-solid fa-circle-check"></i>
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
-  <div class="hr-dashboard-table">
-    <table class="table table-sm table-striped table-hover table-primary-color">
-      <thead>
-        <tr>
-          <%# <th scope="col">Emp. Id</th> %>
-          <th scope="col">Employee Name</th>
-          <th scope="col">Health Check Date</th>
-          <th scope="col">Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @set_up.company.users.each do |user| %>
-          <tr>
-            <%# <td scope="row" class="text-center"> %>
-            <%# <%= user.id %>
-            <%# </td> %>
-            <td>
-              <%= "#{user.last_name.capitalize} #{user.first_name.capitalize}" %>
-            </td>
-            <% if user.health_checks.find_by(set_up: @set_up) == nil %>
-              <td>
-                No appointment
-              </td>
-              <td>
-              </td>
-            <% else %>
-              <td>
-                <%= user.health_checks.find_by(set_up: @set_up).date %>
-              </td>
-              <td class="text-center">
-                <% if user.health_checks.find_by(set_up: @set_up).result.attached? %>
-                  <i class="fa-solid fa-circle-check"></i>
-                <% end %>
-              </td>
-            <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+</div>
+</div>
 </div>
