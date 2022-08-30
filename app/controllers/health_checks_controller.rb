@@ -60,7 +60,7 @@ class HealthChecksController < ApplicationController
     attachment = email.attachments.first.read
     health_check = User.find_by(first_name: "oanh").health_checks.last
     # binding.pry
-    health_check.result.attach(io: StringIO.new(attachment), filename: "OanhNguyen.pdf", content_type: "application/pdf")
+    health_check.result.attach(io: StringIO.new(attachment), filename: "OanhNguyen.jpeg", content_type: "application/jpeg")
     health_check.save
   end
 
