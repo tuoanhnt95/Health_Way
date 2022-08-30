@@ -15,7 +15,7 @@ All My Health Checks:
   Status: <%= health_check.result.attached? ? "Completed" : "Pending" %>
   <br>
     <% if health_check.result.attached? %>
-      <%= link_to cl_image_path(health_check.result.key), target: :_blank, class: "btn btn-primary" do %>
+      <%= link_to cl_image_path(health_check.result.key, attachment: true), target: :_blank, class: "btn btn-primary" do %>
         Result
       <% end %>
     <% end %>
