@@ -56,6 +56,8 @@
                 <td class="text-center">
                   <% if user.health_checks.find_by(set_up: @set_up).result.attached? %>
                     <i class="fa-solid fa-circle-check"></i>
+                  <% else %>
+                    <td>pending</td>
                   <% end %>
                 </td>
               <% end %>
