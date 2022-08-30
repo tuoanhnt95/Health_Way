@@ -9,5 +9,9 @@ Rails.application.routes.draw do
 
   resources :health_checks, only: %i[index show edit update]
 
+  resources :notifications do
+    post :read_all, on: :collection
+  end
+
   post 'submit_result', to: 'health_checks#submit_result'
 end
