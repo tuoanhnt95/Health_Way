@@ -37,7 +37,8 @@ class SetUpsController < ApplicationController
     end
 
     if @set_up.save
-      notification = SetUpNoticifation.with(comment: "")
+      notification = SetUpNotification.with(set_up: @set_up)
+      notification.deliver(@set_up.company.users)
       redirect_to set_up_path(@set_up)
     else
       render :new, status: :unprocessable_entity
