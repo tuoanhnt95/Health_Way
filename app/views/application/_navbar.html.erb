@@ -16,11 +16,13 @@
             <span data-bs-toggle="dropdown">Notification</span>
             (<%= current_user.notifications.unread.count  %>)
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-              <% current_user.notifications.each do |notification| %>
-                <% if notification.unread? %>
-                  <%= link_to  notification.to_notification.message, notification.to_notification.url, class: "dropdown-item"%>
-                  <% else %>
-                  <p>No messages</p>
+              <% if  current_user.notifications.unread.count == 0%>
+                <p>No new set up</p>
+              <% else %>
+                <% current_user.notifications.each do |notification| %>
+                  <% if notification.unread? %>
+                    <%= link_to  notification.to_notification.message, notification.to_notification.url, class: "dropdown-item"%>
+                  <% end %>
                 <% end %>
               <% end %>
             </div>
