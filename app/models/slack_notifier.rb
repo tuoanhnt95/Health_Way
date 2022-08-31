@@ -2,7 +2,7 @@ class SlackNotifier
   attr_reader :client
 
   # 環境SLACK_WEBHOOK_URLにwebhook urlを格納
-  WEBHOOK_URL = "https://hooks.slack.com/services/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"
+  WEBHOOK_URL = ENV.fetch('SLACK_WEBHOOK_URL')
   CHANNEL = "#health_check"
   USER_NAME = "Health_check_Reminder"
 
