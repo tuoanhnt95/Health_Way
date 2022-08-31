@@ -2,7 +2,7 @@
   min-height: calc(100vh - 50px);
   height: 100%;
   width: 224px;
-  background-color: $green;
+  background-color: #4699a156;
   position: sticky;
   left: 0px;
   top: 50px;
@@ -10,13 +10,13 @@
 
 .sidebar-list {
   list-style: none;
-  min-height: calc(100vh - 50px);
-  padding-block: 16px;
+  //min-height: calc(100vh - 50px);
+  //padding-block: 16px;
   padding-left: 0;
   a {
     text-decoration: none;
-    color: lightgrey;
-    padding: 16px;
+    color: $green;
+    padding: 8px;
     display: block;
   }
 }
@@ -27,4 +27,20 @@
   a {
     color:white;
   }
+
+  .icons {
+    color: white;
+  }
+}
+
+//icons
+.icons {
+  padding-top: 11px;
+  padding-left: 6px;
+  color: $green;
+}
+
+hr {
+  color: $green;
+  margin: 12px
 }
