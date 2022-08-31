@@ -43,6 +43,10 @@
             <% @set_up.company.users.order('last_name ASC').each do |user| %>
               <td>
                 <%= "#{user.last_name.capitalize} #{user.first_name.capitalize}" %>
+                <% if user.photo.attached? %>
+                  <%= cl_image_tag user.photo.key, class: "avatar" %>
+                <% else %>
+                <% end %>
               </td>
               <% if user.health_checks.find_by(set_up: @set_up) == nil %>
                 <td>
