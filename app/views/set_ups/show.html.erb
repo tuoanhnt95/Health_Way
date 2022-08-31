@@ -3,8 +3,8 @@
   <div class="hr-dashboard-info d-flex justify-content-evenly">
     <div class="hr-dashboard-info-left">
       <h3>Time Frame</h3>
-      <p class="text-light"><%= @set_up.start_date %> <strong>-</strong>
-        <%= @set_up.end_date %></p>
+      <p class="text-light"><%= @set_up.start_date.strftime(@set_up.start_date.day.ordinalize + ' %b %Y') %> <strong>-</strong>
+        <%= @set_up.end_date.strftime(@set_up.end_date.day.ordinalize + ' %b %Y') %></p>
       <h4>Appointments Booked <%= @appointment_count %>/<%= @employee_count %></h4>
       <div class="progress bg-info">
         <% if @appointment_count == 0 %>
@@ -51,7 +51,7 @@
                 </td>
               <% else %>
                 <td>
-                  <%= user.health_checks.find_by(set_up: @set_up).date %>
+                  <%= user.health_checks.find_by(set_up: @set_up).date.strftime(user.health_checks.find_by(set_up: @set_up).date.day.ordinalize + ' %b %Y') %>
                 </td>
                 <td class="text-center">
                   <% if user.health_checks.find_by(set_up: @set_up).result.attached? %>
