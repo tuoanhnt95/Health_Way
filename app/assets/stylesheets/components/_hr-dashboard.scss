@@ -65,6 +65,21 @@ grid-template-rows: auto 1fr;
   }
 }
 
-.needsappointment {
-margin-bottom: 8px;
+.card-index {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-gap: 4px;
+  margin: 0 auto;
+  padding: 4px;
+}
+
+.card-trip {
+  width: 50px;
+  overflow: hidden;
+  background: white;
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  font-size: 12px;
+  padding: 2px;
+  text-align: center;
 }
