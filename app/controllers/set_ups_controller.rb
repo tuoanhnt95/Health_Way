@@ -1,6 +1,7 @@
 class SetUpsController < ApplicationController
   before_action :set_set_up, only: [:show]
   before_action :check_admin, only: [:index, :show]
+
   def index
     @set_ups = policy_scope(SetUp)
     @employee_count = User.all.count
@@ -34,6 +35,8 @@ class SetUpsController < ApplicationController
     if @set_up.save
       notification = SetUpNotification.with(set_up: @set_up)
       notification.deliver(@set_up.company.users)
+      @message = "Health Check Time! Book your new health check [@HealthWay](http://healthway.live)"
+      notifier = SlackNotifier.new.send(@message)
       redirect_to set_up_path(@set_up)
     else
       render :new, status: :unprocessable_entity
