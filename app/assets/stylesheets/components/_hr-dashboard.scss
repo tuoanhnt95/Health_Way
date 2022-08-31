@@ -1,7 +1,7 @@
-.hr-dashboard-info {
-  display: flex;
-  justify-content: space-between;
-}
+// .hr-dashboard-info {
+//   display: flex;
+//   justify-content: space-between;
+// }
 .hr-dashboard-info-left {
   width: 40%;
   p {
@@ -39,6 +39,32 @@ grid-template-rows: auto 1fr;
   }
 }
 
-.hr-dashboard-table {
-  margin-top: 32px;
+
+.timeframedate {
+  color: white;
+  background-color: $green;
+  font-family: 'Roboto', sans-serif;
+  padding-top: 20px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 8px;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.timeframetitle {
+  background-color: $green;
+  color: white;
+  padding-left: 8px;
+}
+
+.timeframeheader {
+  background-color: $green;
+  h3 {
+    color: white !important;
+  }
+}
+
+.needsappointment {
+margin-bottom: 8px;
 }
