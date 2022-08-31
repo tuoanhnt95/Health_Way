@@ -1,42 +1,42 @@
 <div class="sidebar">
-  <ul class="sidebar-list d-flex flex-column justify-content-evenly">
+  <div class="sidebar-list d-flex flex-column justify-content-evenly">
     <% if current_user.admin%>
-      <li class = "<%= current_page?(controller: 'set_ups', action: 'show', id: SetUp.order("created_at DESC").first.id ) ? 'sidebar-active' : '' %>">
-        <div class="d-flex">
-          <i class="fa fa-fw fa-home icons"></i> <%= link_to "HR", set_up_path(SetUp.order("created_at DESC").first) %>
+      <div class="card-sidebar <%= current_page?(controller: 'set_ups', action: 'show', id: SetUp.order("created_at DESC").first.id ) ? 'sidebar-active' : '' %>">
+        <div class="card-sidebar-info">
+          <i class="fa fa-fw fa-home"></i>
+          HR
         </div>
-      </li>
-      <li class = "<%= current_page?(set_ups_path) ? 'sidebar-active' : '' %>">
-        <div class="d-flex">
-          <i class="fa-solid fa-book-open icons"></i><%= link_to "History", set_ups_path %>
+        <%= link_to "", set_up_path(SetUp.order("created_at DESC").first), class: "link-card" %>
+      </div>
+      <div class="card-sidebar <%= current_page?(set_ups_path) ? 'sidebar-active' : '' %>">
+        <div class="card-sidebar-info">
+          <i class="fa-solid fa-book-open icons"></i>
+          History
         </div>
-      </li>
-      <li class = "<%= current_page?(controller: 'set_ups', action: 'new') ? 'sidebar-active' : '' %>">
-        <div class="d-flex">
+        <%= link_to "", set_ups_path, class: "link-card" %>
+      </div>
+      <div class="card-sidebar <%= current_page?(controller: 'set_ups', action: 'new') ? 'sidebar-active' : '' %>">
+        <div class="card-sidebar-info">
           <i class="fa-solid fa-square-plus icons"></i>
-          <%= link_to "Create Session", new_set_up_path %>
+          Create Session
         </div>
-      </li>
-      
+        <%= link_to "", new_set_up_path, class: "link-card" %>
+      </div>
       <hr>
     <% end %>
-    <li class = "<%= current_page?(controller: 'health_checks', action: 'index') ? 'sidebar-active' : '' %>">
-      <div class="d-flex">
+    <div class="card-sidebar <%= current_page?(controller: 'health_checks', action: 'index') ? 'sidebar-active' : '' %>">
+      <div class="card-sidebar-info">
         <i class="fa-solid fa-people-group icons"></i>
-        <%= link_to "Health Check Info", health_checks_path %>
+        Health Check Info
       </div>
-    </li>
-    <li class = "<%= current_page?(controller: 'health_checks', set_up_id: SetUp.order("created_at DESC").first.id, action: 'new') ? 'sidebar-active' : '' %>">
-      <div class="d-flex">
-        <i class="fa-solid fa-calendar icons"></i>
-        <%= link_to "Schedule Appointment", new_set_up_health_check_path(SetUp.order("created_at DESC").first) %>
-      </div>
-    </li>
-    <li class = "<%= current_page?(controller: 'health_checks', id: HealthCheck.order("created_at DESC").first.id, action: 'edit') ? 'sidebar-active' : '' %>">
-      <div class="d-flex">
-      <%# <i class="fa-solid fa-pen icons"></i> %>
-      <%#= link_to "Edit Appointment", edit_health_check_path(HealthCheck.order("created_at DESC").first) %>
+      <%= link_to "", health_checks_path, class: "link-card" %>
     </div>
-    </li>
-  </ul>
+    <div class="card-sidebar <%= current_page?(controller: 'health_checks', set_up_id: SetUp.order("created_at DESC").first.id, action: 'new') ? 'sidebar-active' : '' %>">
+      <div class="card-sidebar-info">
+        <i class="fa-solid fa-calendar icons"></i>
+        Schedule Appointment
+      </div>
+      <%= link_to "", new_set_up_health_check_path(SetUp.order("created_at DESC").first), class: "link-card" %>
+    </div>
+  </div>
 </div>

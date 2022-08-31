@@ -1,44 +1,57 @@
 <div class="custom-container">
   <div class="hr-dashboard-info">
-    <div class="timeframeheader d-flex">
-      <div class="timeframetitle">
-        <h3>Time Frame</h3>
-      </div>
-      <div class="timeframedate">
-        <p><%= @set_up.start_date.strftime(@set_up.start_date.day.ordinalize + ' %b %Y') %> <strong>-</strong>
-          <%= @set_up.end_date.strftime(@set_up.end_date.day.ordinalize + ' %b %Y') %></p>
+    <div>
+      <div class="timeframe">
+        <h3><i class="fa-solid fa-calendar icons"></i></h3>
+        <h4>
+          <%= @set_up.start_date.strftime(@set_up.start_date.day.ordinalize + ' %b %Y') %> <strong>-</strong>
+          <%= @set_up.end_date.strftime(@set_up.end_date.day.ordinalize + ' %b %Y') %>
+        </h4>
       </div>
     </div>
     <div class="top-middle d-flex justify-content-start">
       <div class="hr-dashboard-info-left me-5">
-        <h4>Appointments Booked <%= @appointment_count %>/<%= @employee_count %></h4>
+        <h4>Appointments Booked <i class="fas fa-user-friends"></i><%= @appointment_count %>/<%= @employee_count %></h4>
         <div class="progress bg-info">
           <% if @appointment_count == 0 %>
             <p class="text-light text-center"> 0%</p>
           <% end %>
           <div class="progress-bar bg-success fast" role="progressbar" style="width: <%= @appointment_rate%>%" aria-valuenow="<%= @appointment_rate %>" aria-valuemin="0" aria-valuemax="100"><%= @appointment_rate %>%</div>
         </div>
-        <h4>Results Received <%= @complete %>/<%= @employee_count %></h4>
+        <h4>
+          Results Received
+          <i class="fas fa-user-friends"></i>
+          <%= @completion_count %>/<%= @employee_count %>
+        </h4>
         <div class="progress bg-info">
-          <% if @complete == 0 %>
+          <% if @completion_count == 0 %>
             <p class="text-light text-center"> 0%</p>
           <% end %>
           <div class="progress-bar bg-success fast" role="progressbar" style="width: <%= @complete_rate%>%" aria-valuenow="<%= @complete_rate %>" aria-valuemin="0" aria-valuemax="100"><%= @complete_rate %>%</div>
         </div>
       </div>
       <div class="hr-dashboard-info-right ms-5">
-        <h4 class="mb-3">Needs Appointment</h4>
+        <h4 class="mb-3">
+          Needs Appointment
+          <i class="fas fa-user-friends"></i>
+          <%= @no_appointment_emps.count %>
+        </h4>
         <div class="card-index">
           <% @no_appointment_emps.each do |no_appointment_emp| %>
             <div class="card-trip">
               <%= cl_image_tag no_appointment_emp.photo.key, class: 'avatar' %>
-
               <%= no_appointment_emp.first_name.capitalize %>
-
+              <% if @set_up.company.users.where(first_name: no_appointment_emp.first_name).count > 1 %>
+                <%= no_appointment_emp.last_name.first.capitalize %>.
+              <% end %>
             </div>
           <% end %>
         </div>
-        <h4 class="mb-3">Results Pending</h4>
+        <h4 class="mb-3">
+          Results Pending
+          <i class="fas fa-user-friends"></i>
+          <%= @no_result_checks.count %>
+        </h4>
         <div class="card-index">
           <% @no_result_checks.each do |no_result_check| %>
             <div class="card-trip">
