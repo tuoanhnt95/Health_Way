@@ -21,8 +21,8 @@ class SetUpsController < ApplicationController
   end
 
   def new
-    @clinics = Clinic.all
-    @top_clinics = Clinic.joins(:health_checks).select("clinics.*, COUNT(*) AS count").group("clinics.id").order(count: :desc).first(5)
+    @clinics = Clinic.includes(:health_checks).all
+    # @top_clinics = Clinic.joins(:health_checks).select("clinics.*, COUNT(*) AS count").group("clinics.id").order(count: :desc).first(5)
     @set_up = SetUp.new
     authorize @set_up
   end
@@ -43,8 +43,7 @@ class SetUpsController < ApplicationController
   private
 
   def set_up_params
-    params[:set_up][:clinics].reject! { |clinic| clinic.empty? }
-    params.require(:set_up).permit(:start_date, :end_date, clinics:[])
+    params.require(:set_up).permit(:start_date, :end_date)
   end
 
   def set_set_up
