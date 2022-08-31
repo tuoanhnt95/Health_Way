@@ -3,14 +3,18 @@
 <% @unread_hr_notifications = @hr_notifications.select{ |notification| notification.unread? }.count %>
 <% @unread_em_notifications = @em_notifications.select{ |notification| notification.unread? }.count %>
 <% @unread_notifications = @unread_hr_notifications + @unread_em_notifications %>
-<li class="nav-item dropdown">
+<li class="nav-item dropdown  nav-link">
   <span data-bs-toggle="dropdown"><i class="fa-solid fa-bell"></i></span>
   <% if current_user.admin %>
-    (<%= @unread_notifications%>)
+    <% unless @unread_notifications == 0 %>
+      (<%= @unread_notifications%>)
+    <% end %>
   <% else %>
-    (<%= @unread_em_notifications %>)
+    <% unless @unread_em_notifications == 0 %>
+      (<%= @unread_em_notifications %>)
+    <% end %>
   <% end %>
-  <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+  <div class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="navbarDropdown">
     <% if current_user.admin %>
       <p>HR</p>
       <div class="hr-notifications">
