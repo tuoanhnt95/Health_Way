@@ -9,7 +9,7 @@ class SetUpNotification < Noticed::Base
   #
   deliver_by :database
   # deliver_by :email, mailer: "UserMailer"
-  # deliver_by :slack
+  deliver_by :slack
   # deliver_by :custom, class: "MyDeliveryMethod"
 
   # Add required params

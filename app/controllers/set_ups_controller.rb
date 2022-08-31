@@ -34,6 +34,11 @@ class SetUpsController < ApplicationController
     if @set_up.save
       notification = SetUpNotification.with(set_up: @set_up)
       notification.deliver(@set_up.company.users)
+      notifier = Slack::Notifier.new "WEBHOOK_URL" do
+        defaults channel: "#default",
+                username: "notifier"
+      end
+      notifier.ping "Please check healthway.live to book your new health check"
       redirect_to set_up_path(@set_up)
     else
       render :new, status: :unprocessable_entity
