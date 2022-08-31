@@ -32,7 +32,9 @@ class HealthChecksController < ApplicationController
     @health_check.set_up = @set_up
     authorize @health_check
     if @health_check.save
-      current_user.notifications.find { |noti| noti[:params][:set_up].id == @set_up.id }.mark_as_read!
+      current_user.notifications.find { |noti| noti.params[:set_up] == @set_up }.mark_as_read!
+      notification = HealthCheckNotification.with(health_check: @health_check)
+      notification.deliver(@health_check.set_up.users.where(admin: true))
       redirect_to health_checks_path
     else
       render :new, status: :unprocessable_entity
@@ -67,9 +69,9 @@ class HealthChecksController < ApplicationController
     skip_authorization
     email = Mail.new(params[:email])
     attachment = email.attachments.first.read
-    health_check = User.find_by(first_name: "oanh").health_checks.last
+    health_check = User.find_by(first_name: "mengrui").health_checks.last
     # binding.pry
-    health_check.result.attach(io: StringIO.new(attachment), filename: "OanhNguyen.jpeg", content_type: "application/jpeg")
+    health_check.result.attach(io: StringIO.new(attachment), filename: "NguyenOanh2022.jpeg", content_type: "application/jpeg")
     health_check.save
   end
 

@@ -18,17 +18,18 @@
             <th scope="col">Results</th>
           </tr>
         </thead>
-        <% @health_checks.each do |health_check| %>
+        <% @health_checks.order('date ASC').each do |health_check| %>
           <tr>
-            <td><%= health_check.date %></td>
+            <td><%= health_check.date.strftime(health_check.date.day.ordinalize + ' %b %Y') %></td>
             <td><%= health_check.clinic.name%></td>
-            <td><%= health_check.result.attached? ? "Completed" : "Pending" %></td>
             <% if health_check.result.attached? %>
               <td>
-                <%= link_to cl_image_path(health_check.result.key, attachment: true), target: :_blank, class: "btn btn-primary" do %>
-                  Result
+                <%= link_to cl_image_path(health_check.result.key, attachment: true), target: :_blank, class: "btn btn-success text-white" do %>
+                  pdf
                 <% end %>
               </td>
+            <% else %>
+              <td>Pending</td>
             <% end %>
           </tr>
         <% end %>

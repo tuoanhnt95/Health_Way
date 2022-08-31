@@ -11,6 +11,7 @@ SetUp.destroy_all
 puts 'Removing the companies...'
 Company.destroy_all
 
+
 # ===================== 15 clinics=====================
 puts 'Creating clinics...'
 i = 0
