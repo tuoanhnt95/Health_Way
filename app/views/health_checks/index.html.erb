@@ -20,7 +20,7 @@
         </thead>
         <% @health_checks.order('date ASC').each do |health_check| %>
           <tr>
-            <td><%= health_check.date %></td>
+            <td><%= health_check.date.strftime(health_check.date.day.ordinalize + ' %b %Y') %></td>
             <td><%= health_check.clinic.name%></td>
             <% if health_check.result.attached? %>
               <td>
