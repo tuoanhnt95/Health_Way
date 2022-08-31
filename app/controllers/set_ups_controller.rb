@@ -31,11 +31,6 @@ class SetUpsController < ApplicationController
     @set_up = SetUp.new(start_date: set_up_params[:start_date], end_date: set_up_params[:end_date])
     authorize @set_up
     @set_up.company = current_user.company
-    set_up_params[:clinics].reject(&:blank?).each do |clinic_id|
-      @clinic_set_up = ClinicSetUp.create(set_up: @set_up, clinic_id: clinic_id)
-      @set_up.clinic_set_ups << @clinic_set_up
-    end
-
     if @set_up.save
       notification = SetUpNotification.with(set_up: @set_up)
       notification.deliver(@set_up.company.users)
