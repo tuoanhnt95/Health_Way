@@ -13,7 +13,6 @@
         <p><%= "#{@set_up.start_date.strftime(@set_up.start_date.day.ordinalize + ' %b %Y')}-#{@set_up.end_date.strftime(@set_up.end_date.day.ordinalize + ' %b %Y')}" %></p>
         <%= simple_form_for [@set_up, @health_check] do |f| %>
           <%= f.input :date, label: "Select Date", html5: true, input_html: {min: @set_up.start_date, max: @set_up.end_date} %>
-          <%= f.association :clinic, label: "Select Clinic", collection: @set_up.clinics %>
           <%= f.association :clinic, label: "Select Clinic", collection: @clinics %>
           <%= f.submit "Confirm", class: "btn btn-success text-white w-100" %>
         <% end %>

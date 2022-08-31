@@ -1,32 +1,44 @@
 <div data-controller="litepicker" class="custom-container">
   <h1>Create Health Check Session</h1>
-  <div class="page-top d-flex justify-content-evenly hc-new-page-body pt-5">
+  <div class="page-top container hc-new-page-body pt-5">
     <div class="timeframeheader">
       <h5 class="fw-bold">Select Time Frame</h5>
       <p>Choose the start and end dates for your new health check session.</p>
     </div>
-    <div class="datepicker">
+    <div class="datepicker w-100">
       <%= simple_form_for(@set_up) do |f| %>
-        <div class="d-flex w-100 align-items-end">
-          <%= f.input :start_date, label: "Start Date", as: :date, html5: true %>
-          <%= f.input :end_date, label: "End Date", as: :date, html5: true %>
+        <div class="d-flex w-100 align-items-end flex-column">
+          <div class="d-flex w-100">
+            <div class="w-100">
+              <%= f.input :start_date, label: "Start Date", as: :date, html5: true, input_html: {class:"w-100"} %>
+            </div>
+            <div class="w-100">
+              <%= f.input :end_date, label: "End Date", as: :date, html5: true, input_html: {class:"w-100"} %>
+            </div>
+          </div>
           <%= f.submit "Submit", class: "btn btn-success w-100 text-white"%>
         </div>
       <% end %>
     </div>
   </div>
-  <div class="page-bottom d-flex justify-content-evenly pt-5">
+  <div class="page-bottom container hc-new-page-body pt-5">
+    <div class="timeframeheader">
+      <h5 class="fw-bold">Top 5 clinics used by employees</h5>
+      <p>These are the top 5 clinics visited by your employees.</p>
+    </div>
     <div class="top-clinics">
-      <h5 class="fw-bold">Clinics</h5>
-      <% @clinics.order("name ASC").each do |clinic| %>
-        <ul>
-          <% if clinic.health_checks.count > 0 %>
-            <li class="fw-light"><%= "#{clinic.name}(#{pluralize(clinic.health_checks.count, 'employee')})" %></li>
-          <% else %>
-            <li class="fw-light"><%= "#{clinic.name}(no employee)" %></li>
-          <% end %>
-        </ul>
-      <% end %>
+      <% @top_clinics.each do |clinic| %>
+        <%# <li class="fw-light"><%= "#{clinic.name}(#{clinic.health_checks.count} employees)"</li> %>
+        <%# <% clinics.order("name ASC").each do |clinic| %>
+          <ul>
+            <% if clinic.health_checks.count > 0 %>
+              <li class="fw-light"><%= "#{clinic.name}(#{pluralize(clinic.health_checks.count, 'employee')})" %></li>
+            <% else %>
+              <li class="fw-light"><%= "#{clinic.name}(no employee)" %></li>
+            <% end %>
+          </ul>
+          <%# <% end %>
+        <% end %>
+      </div>
     </div>
   </div>
-</div>
