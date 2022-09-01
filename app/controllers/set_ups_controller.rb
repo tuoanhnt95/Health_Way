@@ -62,7 +62,7 @@ class SetUpsController < ApplicationController
   def send_noti(set_up)
     notification = SetUpNotification.with(set_up: set_up)
     notification.deliver(set_up.company.users)
-    @message = "Health Check Time! Book your new health check [@HealthWay](http://healthway.live/set_ups/#{@set_up.id}/health_checks/new)"
+    @message = message
     SlackNotifier.new.send(@message)
   end
 
@@ -78,5 +78,38 @@ class SetUpsController < ApplicationController
 
   def calculate_rate(finished_number, total_number)
     (finished_number / total_number.to_f * 100).ceil
+  end
+
+  def message
+    {
+      "blocks": [
+        {
+          "type": "header",
+          "text": {
+            "type": "plain_text",
+            "text": "Yearly Health Checks  :health_worker::hospital:",
+            "emoji": true
+          }
+        },
+        {
+          "type": "section",
+          "text": {
+            "type": "mrkdwn",
+            "text": "Go and get your Health Checks done people! Click on the link and fill out the form! :page_facing_up:"
+          },
+          "accessory": {
+            "type": "button",
+            "text": {
+              "type": "plain_text",
+              "text": "Health Way",
+              "emoji": true
+            },
+            "value": "click_me_123",
+            "url": "https://healthway.live", # (http://healthway.live/set_ups/#{@set_up.id}/health_checks/new)
+            "action_id": "button-action"
+          }
+        }
+      ]
+    }
   end
 end
