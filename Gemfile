@@ -73,14 +73,14 @@ group :test do
   gem "webdrivers"
 end
 
-gem "pundit"
 gem "autoprefixer-rails"
 gem "cloudinary"
 gem "devise"
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 gem "font-awesome-sass", "~> 6.1"
 gem "geocoder"
-gem "simple_form", github: "heartcombo/simple_form"
-gem "rails_admin", "~> 3.0"
-
 gem "noticed", "~> 1.5"
+gem "pundit"
+gem "rails_admin", "~> 3.0"
+gem "simple_form", github: "heartcombo/simple_form"
 gem "slack-notifier"
