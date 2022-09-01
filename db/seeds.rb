@@ -39,13 +39,13 @@ puts 'Creating new users...'
 # first_names = ['鶯', '弥生', '梦睿', '蒼', '樹', '湊', '朝陽', '碧', '大翔', '律', '暖',
               # '陽葵', '紬', '凛', '芽依', '葵', '陽菜', '澪', '莉子', '結菜']
 first_names_roma = ['oanh','yayoi', 'mengrui', 'aoi', 'adrian', 'minato', 'gregory', 'patrick', 'hiroto', 'ritu', 'henry',
-                    'himari', 'chelsea', 'rin', 'tim', 'aoi', 'naval', 'peter', 'krystle', 'yuina']
+                    'himari', 'chelsea', 'rin']
 # last_names = ['阮', '畠山', '宋', '高橋', '田中', '伊藤', '渡辺', '山本', '中村', '小林', '加藤',
               # '清水', '佐藤', '鈴木', '高橋', '矢部', '田中', '山本', '中村', '伊藤']
 last_names_roma = ['nguyen', 'hatakeyama', 'song', 'takahashi', 'monk', 'ito', 'house', 'jane', 'nakamura', 'kobayashi', 'kwon',
-                  'shimizu', 'cheung', 'suzuki', 'ferris', 'yabe', 'ravikant', 'attia', 'cho', 'ito']
-                  first_names_roma.each_with_index do |first_name, index|
-                  file = URI.open("https://source.unsplash.com/featured?profile##{rand(1..1000)}")
+                  'shimizu', 'cheung', 'suzuki']
+first_names_roma.each_with_index do |first_name, index|
+  file = URI.open("https://source.unsplash.com/featured?profile##{rand(1..1000)}")
   User.create!(
   first_name: first_name,
   last_name: last_names_roma[index],
@@ -54,6 +54,23 @@ last_names_roma = ['nguyen', 'hatakeyama', 'song', 'takahashi', 'monk', 'ito', '
   fax_extension: 100000 + index,
   admin: false,
   company: company
+  ).photo.attach(io: file, filename: 'user.png', content_type: 'image/png')
+  puts "#{User.count} users created..."
+end
+
+no_photo_first_name = ['tim', 'aoi', 'naval', 'peter', 'krystle', 'yuina']
+no_photo_last_name = ['ferris', 'yabe', 'ravikant', 'attia', 'cho', 'ito']
+
+no_photo_first_name.each_with_index do |first_name, index|
+  file = URI.open("https://ui-avatars.com/api/?background=random&name=#{first_name}+#{no_photo_last_name[index]}")
+  User.create!(
+    first_name: first_name,
+    last_name: no_photo_last_name[index],
+    email: "#{first_name}_#{no_photo_last_name[index]}@healthway.live",
+    password: 123123,
+    fax_extension: 100000 + index,
+    admin: false,
+    company: company
   ).photo.attach(io: file, filename: 'user.png', content_type: 'image/png')
   puts "#{User.count} users created..."
 end

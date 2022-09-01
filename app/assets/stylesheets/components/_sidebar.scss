@@ -3,6 +3,7 @@
   height: 100%;
   width: 224px;
   background-color: #4699a156;
+  box-shadow: 0 0 4px rgba(0,0,0,0.1);
   position: sticky;
   left: 0px;
   top: 50px;
@@ -10,9 +11,8 @@
 
 .sidebar-list {
   list-style: none;
-  //min-height: calc(100vh - 50px);
-  //padding-block: 16px;
   padding-left: 0;
+
   a {
     text-decoration: none;
     color: $green;
@@ -21,26 +21,40 @@
   }
 }
 
-.sidebar-active {
-  background-color: #2f7d84;
-  border-left: 8px solid white;
-  a {
-    color:white;
-  }
+.card-sidebar {
+  display: flex;
+  color: $green;
+  position: relative;
+  text-decoration: none;
+  transition: background-color 1s, color .3s;
 
-  .icons {
-    color: white;
+  i {
+    padding-top: 11px;
+    padding-left: 6px;
+    color: $green;
   }
 }
 
-//icons
-.icons {
-  padding-top: 11px;
-  padding-left: 6px;
-  color: $green;
+.card-sidebar-info {
+  padding: 8px;
+}
+
+.sidebar-active, .card-sidebar:hover {
+  color: white;
+  background-color: #2f7d84;
+  border-left: 8px solid white;
+
+  i {
+    color: $light-gray;
+    font-weight: bold;
+  }
+}
+
+.card-sidebar:hover {
+  background-color: #46c0cb;
 }
 
 hr {
   color: $green;
-  margin: 12px
+  margin: 12px;
 }

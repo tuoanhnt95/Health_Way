@@ -12,12 +12,10 @@
   }
 }
 
-
 .hr-dashboard-info-right {
 display: grid;
 grid-template-rows: auto 1fr;
 }
-
 
 .clinic-lists {
   background-color: $light-green;
@@ -39,11 +37,37 @@ grid-template-rows: auto 1fr;
   }
 }
 
+.timeframe {
+  width: 402px;
+  display: flex;
+  background-color: $green;
+  border-radius: 8px;
+  padding: 4px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  font-family: 'Roboto', sans-serif;
+
+  h3, h4, i {
+    color: white;
+    margin: 4px;
+    padding: 0px;
+  }
+}
+
+.timeframetext {
+  padding: 2px;
+  border-radius: 3px;
+  background-color: $light-green;
+  width: 250px;
+  color: white;
+  margin-bottom: 60px;
+}
 
 .timeframedate {
   color: white;
   background-color: $green;
-  font-family: 'Roboto', sans-serif;
+
   padding-top: 20px;
   padding-left: 8px;
   padding-right: 8px;
@@ -63,23 +87,4 @@ grid-template-rows: auto 1fr;
   h3 {
     color: white !important;
   }
-}
-
-.card-index {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 4px;
-  margin: 0 auto;
-  padding: 4px;
-}
-
-.card-trip {
-  width: 50px;
-  overflow: hidden;
-  background: white;
-  border-radius: 4px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.2);
-  font-size: 12px;
-  padding: 2px;
-  text-align: center;
 }
