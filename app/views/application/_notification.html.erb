@@ -1,46 +1,32 @@
-<% @hr_notifications = current_user.notifications.where(type: "HealthCheckNotification") %>
-<% @em_notifications = current_user.notifications.where(type: "SetUpNotification") %>
-<% @unread_hr_notifications = @hr_notifications.select{ |notification| notification.unread? }.count %>
-<% @unread_em_notifications = @em_notifications.select{ |notification| notification.unread? }.count %>
-<% @unread_notifications = @unread_hr_notifications + @unread_em_notifications %>
 <li class="nav-item dropdown  nav-link">
-  <span data-bs-toggle="dropdown"><i class="fa-solid fa-bell"></i></span>
-  <% if current_user.admin %>
-    <% unless @unread_notifications == 0 %>
-      (<%= @unread_notifications%>)
-    <% end %>
+  <% if @unread_notifications == 0 %>
+    <span data-bs-toggle="dropdown"><i class="fa-solid fa-bell"></i></span>
+    <div class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="navbarDropdown">
+      <p class="text-muted">No new message</p>
+    </div>
   <% else %>
-    <% unless @unread_em_notifications == 0 %>
-      (<%= @unread_em_notifications %>)
-    <% end %>
-  <% end %>
-  <div class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="navbarDropdown">
-    <% if current_user.admin %>
-      <div class="hr-notifications">
-        <h6>HR</h6>
-        <% if  @unread_hr_notifications == 0%>
-          <p class="text-muted">No new message</p>
-        <% else %>
-          <%= button_to "read all", read_all_notifications_path, method: :post, remote: true, onclick: "location.reload()", class: "btn btn-success text-white"%>
-          <% @hr_notifications.each do |notification| %>
-            <% if notification.unread? %>
-              <%= link_to notification.to_notification.message, "#", class: "dropdown-item"%>
-            <% end %>
-          <% end %>
-        <% end %>
-      </div>
-    <% end %>
-    <div class="em-notifications">
-      <h6>Employee</h6>
-      <% if  @unread_em_notifications == 0%>
-        <p class="text-muted">No new message</p>
-      <% else %>
-        <% @em_notifications.each do |notification| %>
+    <span data-bs-toggle="dropdown"><i class="fa-solid fa-bell"></i></span>
+    (<%= @unread_notifications%>)
+    <div class="dropdown-menu dropdown-menu-end p-3" aria-labelledby="navbarDropdown">
+      <%= button_to "read all", read_all_notifications_path, method: :post, remote: true, onclick: "location.reload()", class: "btn btn-success text-white mb-3"%>
+      <div class="em-notifications">
+        <h6>Employee</h6>
+        <% @set_up_notifications.each do |notification| %>
           <% if notification.unread? %>
             <%= link_to notification.to_notification.message, notification.to_notification.url, class: "dropdown-item"%>
           <% end %>
         <% end %>
-      <% end %>
+        <% @health_check_notifications.each do |notification| %>
+          <% if notification.unread? %>
+            <%= link_to notification.to_notification.message, "#", class: "dropdown-item"%>
+          <% end %>
+        <% end %>
+        <% @result_notifications.each do |notification| %>
+          <% if notification.unread? %>
+            <%= link_to notification.to_notification.message, "#", class: "dropdown-item"%>
+          <% end %>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 </li>
