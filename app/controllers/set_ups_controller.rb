@@ -19,8 +19,8 @@ class SetUpsController < ApplicationController
     @appointment_rate = calculate_rate(@appointment_count, @employee_count)
     @complete_rate = calculate_rate(complete_health_checks.count, @employee_count)
 
-    @no_appointment_emps = employees.where.not(id: @set_up.users)
-    @no_result_checks = health_checks.includes(:user).where.not(id: complete_health_checks)
+    @no_appointment_emps = employees.where.not(id: @set_up.users).order('LOWER(first_name)')
+    @no_result_checks = health_checks.includes(:user).where.not(id: complete_health_checks).order(date: :asc)
   end
 
   def new
