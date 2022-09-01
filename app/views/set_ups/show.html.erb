@@ -9,7 +9,9 @@
     </div>
     <div class="top-middle d-flex justify-content-start">
       <div class="hr-dashboard-info-left me-5">
-        <h4>Appointments Booked <i class="fas fa-user-friends"></i><%= @appointment_count %>/<%= @employee_count %></h4>
+        <h4>Appointments Booked <i class="fas fa-user-friends"></i>
+          <%= @appointment_count %>/<%= @employee_count %>
+        </h4>
         <div class="progress bg-info">
           <% if @appointment_count == 0 %>
             <p class="text-light text-center"> 0%</p>
