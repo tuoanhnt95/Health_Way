@@ -1,1 +1,27 @@
 // Specific CSS for your home-page
+.background-grey {
+  background-color: $light-light-gray;
+  align-items: center;
+}
+
+.img-fluid {
+  width: 400px;
+  height: auto;
+  margin: 32px;
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+
+  i {
+    font-size: 120px;
+    color: $light-green;
+  }
+}
+
+.footer {
+  background: $light-green;
+  text-align: center;
+  height: 100px;
+  color: $light-gray;
+  padding-top: 50px;
+}
