@@ -34,7 +34,7 @@ class HealthChecksController < ApplicationController
     if @health_check.save
       current_user.notifications.find { |noti| noti.params[:set_up] == @set_up }.mark_as_read!
       notification = HealthCheckNotification.with(health_check: @health_check)
-      notification.deliver(@health_check.set_up.users.where(admin: true))
+      notification.deliver(@health_check.set_up.company.users.where(admin: true))
       redirect_to health_checks_path
     else
       render :new, status: :unprocessable_entity
@@ -58,7 +58,7 @@ class HealthChecksController < ApplicationController
     if @health_check.update(health_check_params)
       if @health_check.result.attached?
         notification = ResultNotification.with(health_check: @health_check)
-        # notification.deliver(@health_check.set_up.users.where(admin: true))
+        notification.deliver(@health_check.set_up.company.users.where(admin: true))
         notification.deliver(@health_check.user)
       end
       redirect_to health_check_path(@health_check)
@@ -79,7 +79,7 @@ class HealthChecksController < ApplicationController
     health_check.result.attach(io: StringIO.new(attachment), filename: "NguyenOanh2022.jpeg", content_type: "application/jpeg")
     if health_check.save
       notification = ResultNotification.with(health_check: @health_check)
-      notification.deliver(@health_check.set_up.users.where(admin: true))
+      notification.deliver(@health_check.set_up.company.users.where(admin: true))
       notification.deliver(@health_check.user)
     end
   end
