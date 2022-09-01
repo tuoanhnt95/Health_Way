@@ -21,7 +21,7 @@
         <% if  @unread_hr_notifications == 0%>
           <p class="text-muted">No new message</p>
         <% else %>
-          <%= button_to "read all", read_all_notifications_path, method: :post, remote: true, onclick: "location.reload()", class: "btn-success bg-white shadow-none"%>
+          <%= button_to "read all", read_all_notifications_path, method: :post, remote: true, onclick: "location.reload()", class: "btn btn-success text-white"%>
           <% @hr_notifications.each do |notification| %>
             <% if notification.unread? %>
               <%= link_to notification.to_notification.message, "#", class: "dropdown-item"%>
