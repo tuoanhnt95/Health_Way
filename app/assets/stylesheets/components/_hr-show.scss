@@ -1,0 +1,90 @@
+// .hr-dashboard-info {
+//   display: flex;
+//   justify-content: space-between;
+// }
+.hr-dashboard-info-left {
+  width: 40%;
+  p {
+    padding: 2px;
+    border-radius: 3px;
+    background-color: $light-green;
+    width: 210px;
+  }
+}
+
+.hr-dashboard-info-right {
+display: grid;
+grid-template-rows: auto 1fr;
+}
+
+.clinic-lists {
+  background-color: $light-green;
+  color: $gray;
+  border-radius: 3px;
+  width: 100%;
+  min-width: 400px;
+  height: 192px;
+  margin-bottom: 16px;
+  overflow-y: scroll;
+
+  ul {
+    list-style: square outside none;
+  }
+
+  li {
+    color: $light-gray;
+    padding: 8px;
+  }
+}
+
+.timeframe {
+  width: 402px;
+  display: flex;
+  background-color: $green;
+  border-radius: 8px;
+  padding: 4px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  font-family: 'Roboto', sans-serif;
+
+  h3, h4, i {
+    color: white;
+    margin: 4px;
+    padding: 0px;
+  }
+}
+
+.timeframetext {
+  padding: 2px;
+  border-radius: 3px;
+  background-color: $light-green;
+  width: 250px;
+  color: white;
+  margin-bottom: 60px;
+}
+
+.timeframedate {
+  color: white;
+  background-color: $green;
+
+  padding-top: 20px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-bottom: 8px;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+.timeframetitle {
+  background-color: $green;
+  color: white;
+  padding-left: 8px;
+}
+
+.timeframeheader {
+  background-color: $green;
+  h3 {
+    color: white !important;
+  }
+}

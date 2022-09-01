@@ -1,7 +1,7 @@
 <div class="custom-container">
-  <div class="wat d-flex">
+  <h1>Health Check Info</h1>
+  <div class="emp-dash-body d-flex justify-content-evenly mt-5">
     <div class="emailbox">
-      <h1>Employee Dashboard</h1>
       <h3>Email</h3>
       <p class="wordsw">Use this email if the clinic you attend will send your health check results via email.</p>
       <p class="email"><%= current_user.email %></p>
@@ -10,7 +10,8 @@
       <p class="fax"><%= current_user.fax_extension %></p>
     </div>
     <div class="containery">
-      <table style="width:100%" class="table table-sm table-striped table-hover table-primary-color table-thickness">
+      <%# <div class="oldtable"> %>
+      <%# <table style="width:100%" class="table-sm table-striped table-hover table-primary-color table-thickness">
         <thead class="fgreen">
           <tr>
             <th scope="col">Date</th>
@@ -19,21 +20,41 @@
           </tr>
         </thead>
         <% @health_checks.order('date ASC').each do |health_check| %>
-          <tr>
-            <td><%= health_check.date.strftime(health_check.date.day.ordinalize + ' %b %Y') %></td>
-            <td><%= health_check.clinic.name%></td>
-            <% if health_check.result.attached? %>
-              <td>
-                <%= link_to cl_image_path(health_check.result.key, attachment: true), target: :_blank, class: "btn btn-success text-white" do %>
-                  pdf
+        <%# <tr class="hc-index-table m-3">
+          <td><%= health_check.date.strftime(health_check.date.day.ordinalize + ' %b %Y')</td>  %>
+        <%# <td><%= health_check.clinic.name</td> %>
+        <%# <% if health_check.result.attached? %>
+        <%# <td> %>
+        <%# <%= link_to cl_image_path(health_check.result.key, attachment: true), target: :_blank, class: "btn btn-success text-white" do %>
+          <%# pdf %>
+          <%# <% end %>
+          <%# </td> %>
+          <%# <% else %>
+          <%# <td>Pending</td> %>
+          <%# <% end %>
+          <%# </tr> %>
+          <%# <% end %>
+          <%# </table> %>
+          <%# </div> %>
+          <% @health_checks.order('date DESC').each do |health_check| %>
+            <div class="hc-index-table d-flex justify-content-between ps-2 pe-2">
+              <div>
+                <%= health_check.date.strftime('%b %Y') %>
+              </div>
+              <div>
+                <%= health_check.clinic.name %>
+              </div>
+              <div>
+                <% if health_check.result.attached? %>
+                  <%= link_to cl_image_path(health_check.result.key, attachment: true), target: :_blank, class: "btn btn-success text-white" do %>
+                    Results
+                  <% end %>
+                <% else %>
+                  Pending
                 <% end %>
-              </td>
-            <% else %>
-              <td>Pending</td>
-            <% end %>
-          </tr>
-        <% end %>
-      </table>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
-  </div>
-</div>

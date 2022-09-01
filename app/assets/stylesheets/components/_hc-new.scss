@@ -11,9 +11,8 @@
   background-color: $green;
   color: $light-light-gray;
   padding: 8px;
-  width: 400px;
-  height: 136px;
-  overflow-y: scroll;
+  width: 100%;
+  height: 100%;
 }
 
 .page-top {
@@ -26,6 +25,6 @@
   border-top: $light-green solid 2px;
 }
 
-.timeframeheader {
-  width: 402px;
+.hc-new-desc {
+  width: 400px;
 }

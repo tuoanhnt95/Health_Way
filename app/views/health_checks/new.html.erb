@@ -3,18 +3,15 @@
     <h1 class="page-title">
       Schedule Appointment
     </h1>
-    <br>
-    <br>
     <% if @set_up.users.include?(current_user) %>
       <p>No new set_up to assign</p>
     <% else %>
       <div>
-        <p>Time Frame</p>
-        <p><%= "#{@set_up.start_date.strftime(@set_up.start_date.day.ordinalize + ' %b %Y')}-#{@set_up.end_date.strftime(@set_up.end_date.day.ordinalize + ' %b %Y')}" %></p>
+        <h3>Time Frame</h3>
+        <p class="timeframetext"><%= "#{@set_up.start_date.strftime(@set_up.start_date.day.ordinalize + ' %b %Y')} - #{@set_up.end_date.strftime(@set_up.end_date.day.ordinalize + ' %b %Y')}" %></p>
         <%= simple_form_for [@set_up, @health_check] do |f| %>
           <%= f.input :date, label: "Select Date", html5: true, input_html: {min: @set_up.start_date, max: @set_up.end_date} %>
           <%= f.association :clinic, label: "Select Clinic", collection: @clinics %>
-          <%= f.input :result, as: :file %>
           <%= f.submit "Confirm", class: "btn btn-success text-white w-100" %>
         <% end %>
       </div>
