@@ -28,3 +28,26 @@
 .hc-new-desc {
   width: 400px;
 }
+
+.card-setup {
+  background-color: $light-green;
+  margin-bottom: 24px;
+  padding: 0px 16px;
+  border-radius: 16px;
+}
+
+.timeframenew {
+  background-color: white;
+  border-radius: 16px;
+  padding: 8px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  color: $green;
+  border: 2px solid $light-gray;
+}
+
+.new_health_check {
+  legend {
+    color: white;
+  }
+}

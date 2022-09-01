@@ -16,7 +16,7 @@ class HealthChecksController < ApplicationController
   def new
     @health_check = HealthCheck.new
     authorize @health_check
-    @clinics = Clinic.all
+    @clinics = Clinic.order("name ASC")
     @markers = @clinics.geocoded.map do |clinic|
       {
         lat: clinic.latitude,
