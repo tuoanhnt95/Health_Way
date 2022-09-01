@@ -1,6 +1,6 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: transparent;
+  background: $light-green;
   height: 50px;
   position: sticky;
   top: 0;
@@ -31,7 +31,7 @@
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
-  padding-top: 15px;
+  margin-right: 16px;
 }
 
 .navbar-expand-sm .navbar-nav .nav-link {
