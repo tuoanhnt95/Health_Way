@@ -28,9 +28,9 @@
   </head>
   <body>
     <%= render "navbar" %>
-      <%= render "flashes" %>
-    <div class="root">
-      <% if current_user %>
+    <%= render "flashes" %>
+    <% if current_user && !@hide_navbar %>
+      <div class="root">
         <%= render "sidebar"%>
       <% end %>
       <%= yield %>
