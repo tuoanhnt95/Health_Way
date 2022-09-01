@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
+  before_action :set_notification
   include Pundit::Authorization
 
   # Pundit: allow-list approach
@@ -16,6 +17,21 @@ class ApplicationController < ActionController::Base
   # def default_url_options
   #   { host: ENV["DOMAIN"] || "localhost:3000" }
   # end
+def set_notification
+  if user_signed_in?
+    @set_up_notifications = current_user.notifications.where(type: "SetUpNotification")
+    @health_check_notifications = current_user.notifications.where(type: "HealthCheckNotification")
+    @result_notifications = current_user.notifications.where(type: "ResultNotification")
+    @unread_set_up_notifications = @set_up_notifications.select{ |notification| notification.unread? }.count
+    @unread_health_check_notifications = @health_check_notifications.select{ |notification| notification.unread? }.count
+    @unread_result_notifications = @result_notifications.select{ |notification| notification.unread? }.count
+    if current_user.admin
+      @unread_notifications = @unread_set_up_notifications + @unread_health_check_notifications + @unread_result_notifications
+    else
+      @unread_notifications = @unread_set_up_notifications + @unread_result_notifications
+    end
+  end
+end
 
   private
 
