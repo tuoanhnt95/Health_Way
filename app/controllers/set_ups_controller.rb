@@ -62,7 +62,7 @@ class SetUpsController < ApplicationController
   def send_noti(set_up)
     notification = SetUpNotification.with(set_up: set_up)
     notification.deliver(set_up.company.users)
-    @message = "Health Check Time! Book your new health check [@HealthWay](http://healthway.live)"
+    @message = "Health Check Time! Book your new health check [@HealthWay](http://healthway.live/set_ups/#{@set_up.id}/health_checks/new)"
     SlackNotifier.new.send(@message)
   end
 
