@@ -105,7 +105,7 @@ class SetUpsController < ApplicationController
               "emoji": true
             },
             "value": "click_me_123",
-            "url": "https://healthway.live", # (http://healthway.live/set_ups/#{@set_up.id}/health_checks/new)
+            "url": "http://healthway.live/set_ups/#{@set_up.id}/health_checks/new)",
             "action_id": "button-action"
           }
         }
