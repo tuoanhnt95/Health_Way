@@ -3,19 +3,25 @@
     <h1 class="page-title">
       Schedule Appointment
     </h1>
-    <% if @set_up.users.include?(current_user) %>
-      <p>No new set_up to assign</p>
-    <% else %>
-      <div>
-        <h3>Time Frame</h3>
-        <p class="timeframetext"><%= "#{@set_up.start_date.strftime(@set_up.start_date.day.ordinalize + ' %b %Y')} - #{@set_up.end_date.strftime(@set_up.end_date.day.ordinalize + ' %b %Y')}" %></p>
-        <%= simple_form_for [@set_up, @health_check] do |f| %>
-          <%= f.input :date, label: "Select Date", html5: true, input_html: {min: @set_up.start_date, max: @set_up.end_date} %>
-          <%= f.association :clinic, label: "Select Clinic", collection: @clinics %>
-          <%= f.submit "Confirm", class: "btn btn-success text-white w-100" %>
-        <% end %>
-      </div>
-    <% end %>
+    <div class="card-setup">
+      <% if @set_up.users.include?(current_user) %>
+        <p>No new set_up to assign</p>
+      <% else %>
+        <div>
+          <div class="timeframenew">
+            <h3>Time Frame</h3>
+            <p><%= "#{@set_up.start_date.strftime(' %b ' + @set_up.start_date.day.ordinalize + " %Y")} - #{@set_up.end_date.strftime(' %b ' + @set_up.end_date.day.ordinalize + " %Y")}" %></p>
+          </div>
+          <div>
+            <%= simple_form_for [@set_up, @health_check] do |f| %>
+              <%= f.input :date, label: "Select Date", label_html: {class: "text-white"}, html5: true, input_html: {min: @set_up.start_date, max: @set_up.end_date}%>
+              <%= f.association :clinic, label: "Select Clinic", class: "selectclinic", as: :radio_buttons, collection: @clinics %>
+              <%= f.submit "Confirm", class: "btn btn-success text-white w-100 mb-3" %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
   <div class="page-right col-6">
     <div style="width: 100%; height: 100%;"

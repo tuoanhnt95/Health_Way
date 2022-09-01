@@ -6,10 +6,12 @@
 
 .card-index {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-gap: 4px;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 8px;
   margin: 0 auto;
   padding: 4px;
+  height: 150px;
+  overflow-y: auto;
 }
 
 .card-trip {
@@ -21,4 +23,5 @@
   font-size: 12px;
   padding: 2px;
   text-align: center;
+  min-height: 60px;
 }
