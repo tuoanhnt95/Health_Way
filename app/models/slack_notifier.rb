@@ -3,7 +3,7 @@ class SlackNotifier
 
   # 環境SLACK_WEBHOOK_URLにwebhook urlを格納
   WEBHOOK_URL = ENV.fetch('SLACK_WEBHOOK_URL')
-  CHANNEL = "#health_check"
+  CHANNEL = "#general"
   USER_NAME = "Health_check_Reminder"
 
   def initialize
