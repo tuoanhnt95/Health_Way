@@ -47,7 +47,7 @@
               <div>
                 <% if health_check.result.attached? %>
                   <%= link_to cl_image_path(health_check.result.key, attachment: true), target: :_blank, class: "btn btn-success text-white" do %>
-                    Results
+                    Result
                   <% end %>
                 <% else %>
                   Pending
