@@ -16,7 +16,7 @@ class HealthChecksController < ApplicationController
   def new
     @health_check = HealthCheck.new
     authorize @health_check
-    @clinics = Clinic.order("name ASC")
+    @clinics = Clinic.all.order("name ASC")
     @markers = @clinics.geocoded.map do |clinic|
       {
         lat: clinic.latitude,
@@ -34,7 +34,7 @@ class HealthChecksController < ApplicationController
     if @health_check.save
       current_user.notifications.find { |noti| noti.params[:set_up] == @set_up }.mark_as_read!
       notification = HealthCheckNotification.with(health_check: @health_check)
-      notification.deliver(@health_check.set_up.users.where(admin: true))
+      notification.deliver(@health_check.set_up.company.users.where(admin: true))
       redirect_to health_checks_path
     else
       render :new, status: :unprocessable_entity
@@ -56,6 +56,11 @@ class HealthChecksController < ApplicationController
   def update
     authorize @health_check
     if @health_check.update(health_check_params)
+      if @health_check.result.attached?
+        notification = ResultNotification.with(health_check: @health_check)
+        notification.deliver(@health_check.set_up.company.users.where(admin: true))
+        notification.deliver(@health_check.user)
+      end
       redirect_to health_check_path(@health_check)
     else
       render :edit, status: :unprocessable_entity
@@ -72,7 +77,11 @@ class HealthChecksController < ApplicationController
     health_check = User.find_by(first_name: "mengrui").health_checks.last
     # binding.pry
     health_check.result.attach(io: StringIO.new(attachment), filename: "NguyenOanh2022.jpeg", content_type: "application/jpeg")
-    health_check.save
+    if health_check.save
+      notification = ResultNotification.with(health_check: @health_check)
+      notification.deliver(@health_check.set_up.company.users.where(admin: true))
+      notification.deliver(@health_check.user)
+    end
   end
 
   private

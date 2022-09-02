@@ -12,6 +12,10 @@
   padding: 4px;
   height: 150px;
   overflow-y: auto;
+
+  &.card-index-pending{
+    height: 70px;
+  }
 }
 
 .card-trip {

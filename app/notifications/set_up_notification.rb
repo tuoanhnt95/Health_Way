@@ -19,7 +19,7 @@ class SetUpNotification < Noticed::Base
   # Define helper methods to make rendering easier.
   #
   def message
-    "Schedule new health check for #{params[:set_up].start_date}-#{params[:set_up].end_date}"
+    "Schedule new health check for #{params[:set_up].start_date.strftime("%e %b %Y")} - #{params[:set_up].end_date.strftime("%e %b %Y")}"
   end
   #
   def url
