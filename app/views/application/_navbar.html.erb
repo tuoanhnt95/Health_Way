@@ -4,7 +4,7 @@
       <h3 class="logo"><%= "Health"%><strong><%= "Way"%></strong></h3>
       <% if !user_signed_in? %>
       <% elsif current_user.admin %>
-        <%= link_to '', set_ups_path, class: "link-card" %>
+        <%= link_to '', new_set_up_path, class: "link-card" %>
       <% else %>
         <%= link_to '', health_checks_path, class: "link-card" %>
       <% end %>
