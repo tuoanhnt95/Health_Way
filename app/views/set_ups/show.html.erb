@@ -1,14 +1,15 @@
 <div class="custom-container">
   <div class="hr-dashboard-info">
-    <div class="timeframe">
-      <h4><i class="fa-solid fa-calendar icons"></i></h4>
-      <h4>
-        <%= @set_up.start_date.strftime(@set_up.start_date.day.ordinalize + ' %b %Y') %><strong> - </strong>
-        <%= @set_up.end_date.strftime(@set_up.end_date.day.ordinalize + ' %b %Y') %>
-      </h4>
-    </div>
+    <h1>HR Home</h1>
     <div class="top-middle d-flex justify-content-start">
       <div class="hr-dashboard-info-left me-5">
+        <div class="timeframe">
+          <h4><i class="fa-solid fa-calendar icons"></i></h4>
+          <h4>
+            <%= @set_up.start_date.strftime(@set_up.start_date.day.ordinalize + ' %b %Y') %><strong> - </strong>
+            <%= @set_up.end_date.strftime(@set_up.end_date.day.ordinalize + ' %b %Y') %>
+          </h4>
+        </div>
         <h4>Appointments Booked <i class="fas fa-user-friends"></i>
           <%= @appointment_count %>/<%= @employee_count %>
         </h4>
