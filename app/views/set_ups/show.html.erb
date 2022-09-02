@@ -75,10 +75,10 @@
         </tr>
       </thead>
       <tbody>
-        <% @complete_health_checks.order('date').each do |hc| %>
+        <% @complete_health_checks.order('LOWER(users.first_name)').each do |hc| %>
           <tr>
             <td>
-              <%= "#{hc.user.last_name.capitalize} #{hc.user.first_name.capitalize}" %>
+              <%= "#{hc.user.first_name.capitalize} #{hc.user.last_name.capitalize}" %>
             </td>
             <td>
               <%= hc.date.strftime(hc.date.day.ordinalize + ' %b %Y') %>
@@ -88,10 +88,10 @@
             </td>
           </tr>
         <% end %>
-        <% @no_result_checks.order('date').each do |hc| %>
+        <% @no_result_checks.order('LOWER(users.first_name)').each do |hc| %>
           <tr>
             <td>
-              <%= "#{hc.user.last_name.capitalize} #{hc.user.first_name.capitalize}" %>
+              <%= "#{hc.user.first_name.capitalize} #{hc.user.last_name.capitalize}" %>
             </td>
             <td>
               <%= hc.date.strftime(hc.date.day.ordinalize + ' %b %Y') %>
@@ -103,7 +103,7 @@
         <% @no_appointment_emps.each do |emp| %>
           <tr>
             <td>
-              <%= "#{emp.last_name.capitalize} #{emp.first_name.capitalize}" %>
+              <%= "#{emp.first_name.capitalize} #{emp.last_name.capitalize}" %>
             </td>
             <td>
             </td>
