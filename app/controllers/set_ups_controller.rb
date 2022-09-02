@@ -11,16 +11,16 @@ class SetUpsController < ApplicationController
     authorize @set_up
     health_checks = @set_up.health_checks
     @appointment_count = health_checks.count
-    complete_health_checks = health_checks.includes(:user).joins(:result_attachment)
-    @completion_count = complete_health_checks.count
+    @complete_health_checks = health_checks.includes(:user).joins(:result_attachment)
+    @completion_count = @complete_health_checks.count
     employees = @set_up.company.users
     @employee_count = employees.count
 
     @appointment_rate = calculate_rate(@appointment_count, @employee_count)
-    @complete_rate = calculate_rate(complete_health_checks.count, @employee_count)
+    @complete_rate = calculate_rate(@complete_health_checks.count, @employee_count)
 
     @no_appointment_emps = employees.where.not(id: @set_up.users).order('LOWER(first_name)')
-    @no_result_checks = health_checks.includes(:user).where.not(id: complete_health_checks).order(date: :asc)
+    @no_result_checks = health_checks.includes(:user).where.not(id: @complete_health_checks).order(date: :asc)
   end
 
   def new

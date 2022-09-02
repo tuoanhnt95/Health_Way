@@ -70,31 +70,45 @@
       <thead>
         <tr>
           <th scope="col">Employee Name</th>
-          <th scope="col">Clinic</th>
           <th scope="col">Health Check Date</th>
+          <th scope="col">Status</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <% @set_up.company.users.order('last_name ASC').each do |user| %>
+        <% @complete_health_checks.order('date').each do |hc| %>
+          <tr>
             <td>
-              <%= "#{user.last_name.capitalize} #{user.first_name.capitalize}" %>
+              <%= "#{hc.user.last_name.capitalize} #{hc.user.first_name.capitalize}" %>
             </td>
-            <% if user.health_checks.find_by(set_up: @set_up) == nil %>
-              <td>
-              </td>
-              <td>
-              </td>
-            <% else %>
-              <td>
-                <%= user.health_checks.find_by(set_up: @set_up).date.strftime(user.health_checks.find_by(set_up: @set_up).date.day.ordinalize + ' %b %Y') %>
-              </td>
-              <td class="text-center">
-                <% if user.health_checks.find_by(set_up: @set_up).result.attached? %>
-                  <i class="fa-solid fa-circle-check"></i>
-                <% end %>
-              </td>
-            <% end %>
+            <td>
+              <%= hc.date.strftime(hc.date.day.ordinalize + ' %b %Y') %>
+            </td>
+            <td class="text-center">
+              <i class="fa-solid fa-circle-check"></i>
+            </td>
+          </tr>
+        <% end %>
+        <% @no_result_checks.order('date').each do |hc| %>
+          <tr>
+            <td>
+              <%= "#{hc.user.last_name.capitalize} #{hc.user.first_name.capitalize}" %>
+            </td>
+            <td>
+              <%= hc.date.strftime(hc.date.day.ordinalize + ' %b %Y') %>
+            </td>
+            <td>
+            </td>
+          </tr>
+        <% end %>
+        <% @no_appointment_emps.each do |emp| %>
+          <tr>
+            <td>
+              <%= "#{emp.last_name.capitalize} #{emp.first_name.capitalize}" %>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
           </tr>
         <% end %>
       </tbody>
