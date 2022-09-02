@@ -9,8 +9,7 @@
       <% else %>
         <div>
           <div class="timeframenew">
-            <h3>Time Frame</h3>
-            <p><%= "#{@set_up.start_date.strftime(' %b ' + @set_up.start_date.day.ordinalize + " %Y")} - #{@set_up.end_date.strftime(' %b ' + @set_up.end_date.day.ordinalize + " %Y")}" %></p>
+            <h5><%= "#{@set_up.start_date.strftime(' %b ' + @set_up.start_date.day.ordinalize + " %Y")} - #{@set_up.end_date.strftime(' %b ' + @set_up.end_date.day.ordinalize + " %Y")}" %></h5>
           </div>
           <div>
             <%= simple_form_for [@set_up, @health_check] do |f| %>
