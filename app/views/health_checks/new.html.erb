@@ -15,7 +15,7 @@
             <%= simple_form_for [@set_up, @health_check] do |f| %>
               <%= f.input :date, label: "Select Date", label_html: {class: "text-white"}, html5: true, input_html: {min: @set_up.start_date, max: @set_up.end_date}%>
               <%= f.association :clinic, label: "Select Clinic", class: "selectclinic", as: :radio_buttons, collection: @clinics %>
-              <%= f.submit "Confirm", class: "btn btn-success text-white w-100 mb-3" %>
+              <%= f.submit "Confirm", class: "btn btn-success w-100 mb-3" %>
             <% end %>
           </div>
         </div>

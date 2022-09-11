@@ -1,10 +1,11 @@
-.btn-success:hover {
-  color: $green;
-}
-
 .btn-success {
   border-radius: 8px;
   box-shadow: 2px 2px rgba(46, 78, 59, 0.3);
+  color: white;
+
+  &:hover {
+    color: black;
+  }
 }
 
 .btn-flat {
@@ -14,11 +15,11 @@
   border-radius: 4px;
   background: $green;
   transition: background 0.3s ease;
-}
 
-.btn-flat:hover {
-  background: $light-green;
-  color: white;
+  &:hover {
+    background: $light-green;
+    color: white;
+  }
 }
 
 .btn-gradient {
@@ -29,9 +30,9 @@
   background: linear-gradient($light-green, $green);
   transition: background 0.3s ease;
   border: 1px solid $green;
-}
 
-.btn-gradient:hover {
-  background: linear-gradient($light-green, $green);
-  color: white;
+  &:hover {
+    background: linear-gradient($light-green, $green);
+    color: white;
+  }
 }

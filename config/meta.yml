@@ -1,5 +1,5 @@
 meta_product_name: "HealthWay"
-meta_title: "Corporate healthcheck management app for HR managers and employees"
+meta_title: "Healthcheck management app for HR managers and employees"
 meta_description: "Help HR managers manage healthcheck digitally and maintain employee's privacy"
 meta_image: "cover.png" # should exist in `app/assets/images/`
 twitter_account: "@product_twitter_account"   # required for Twitter Cards

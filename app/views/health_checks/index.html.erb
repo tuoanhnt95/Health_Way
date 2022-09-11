@@ -4,7 +4,7 @@
     <div class="emailbox">
       <h3>Email</h3>
       <p class="wordsw">Use this email if the clinic you attend will send your health check results via email.</p>
-      <p class="email"><%= current_user.email %></p>
+      <p class="fax"><%= current_user.email %></p>
       <h3>Fax Number</h3>
       <p class="wordsw">Use this fax number if the clinic you attend will send your health check results via fax.</p>
       <p class="fax"><%= current_user.fax_extension %></p>
@@ -46,7 +46,7 @@
               </div>
               <div>
                 <% if health_check.result.attached? %>
-                  <%= link_to cl_image_path(health_check.result.key, attachment: true), target: :_blank, class: "btn btn-success text-white" do %>
+                  <%= link_to cl_image_path(health_check.result.key, attachment: true), target: :_blank, class: "btn btn-success" do %>
                     Result
                   <% end %>
                 <% else %>
