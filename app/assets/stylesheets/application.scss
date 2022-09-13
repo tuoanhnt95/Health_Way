@@ -13,6 +13,10 @@
 @import "components/index";
 @import "pages/index";
 
+html, body {
+  overflow-x: hidden;
+}
+
 h1 {
   color: $green;
   font-family: 'Bebas Neue', cursive;
