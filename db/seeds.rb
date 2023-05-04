@@ -42,7 +42,7 @@ manual_users = [
   ['oanh', 'nguyen', "https://i.postimg.cc/h4NJkHQS/oanh.jpg"],
   ['yayoi', 'hatakeyama', "https://i.postimg.cc/50d2VgXp/yaya.jpg"],
   ['mengrui', 'song', "https://i.postimg.cc/PJHCjHb7/song.jpg"],
-  ['tony', 'leng', "https://media-exp1.licdn.com/dms/image/C5103AQElW6RLpcTF1Q/profile-displayphoto-shrink_800_800/0/1552818706998?e=1667433600&v=beta&t=X3IiCO42lp7zxX0oS-6lNjPrJloGGdmvvK6K0d3G25Q"],
+  ['tony', 'leng', "https://static.wikia.nocookie.net/marvelcentral/images/9/97/Tony-Stark.jpg/revision/latest?cb=20130429010603"],
   ['doug', 'berkley', "https://ca.slack-edge.com/T02NE0241-U4APKLFLM-da0b004a3774-512"]
 ]
 

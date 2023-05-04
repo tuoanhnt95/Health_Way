@@ -4,7 +4,6 @@ class NotificationPolicy < ApplicationPolicy
     def resolve
       scope.all
     end
-
   end
 
   def read_all?
@@ -22,5 +21,4 @@ class NotificationPolicy < ApplicationPolicy
   def create?
     true
   end
-
 end
