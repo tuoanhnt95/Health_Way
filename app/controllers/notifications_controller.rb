@@ -5,11 +5,7 @@ class NotificationsController < ApplicationController
     authorize @notifications
     @notifications.mark_as_read!
     if request.xhr?
-      render json: {success: true}
+      render json: { success: true }
     end
-
   end
-
-
-
 end
