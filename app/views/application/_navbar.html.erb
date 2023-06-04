@@ -22,7 +22,7 @@
               <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
             </div>
           </li>
-        <% elseif controller_name != 'sessions' %>
+        <% elsif controller_name != 'sessions' %>
           <li class="nav-item">
             <%= link_to "Login", new_user_session_path, class: "nav-link" %>
           </li>
